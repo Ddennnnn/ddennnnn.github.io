@@ -31,9 +31,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-/* ============================================
-   1. CSS VARIABLES — ubah di sini untuk ganti tema
-   ============================================ */
 :root{
   --bg-primary:#0a0e17;
   --bg-secondary:#0f1420;
@@ -1080,7 +1077,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     <div class="hero-visual">
       <div class="hero-photo-wrap">
         <div class="hero-photo-ring" aria-hidden="true"></div>
-        <img class="hero-photo" src="IMG_4064.jpg" alt="Foto profil Rd Muhammad Rifqi Elfaz" data-i18n-alt="hero.photoAlt">
+        <img class="hero-photo" src="hero_1.jpg" alt="Foto profil Rd Muhammad Rifqi Elfaz" data-i18n-alt="hero.photoAlt">
       </div>
     </div>
   </div>
@@ -1102,7 +1099,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     </div>
     <div class="about-grid">
       <div class="about-photo-wrap reveal">
-        <img src="WhatsApp Image 2026-07-17 at 11.32.44.jpeg" alt="Foto Rd Muhammad Rifqi Elfaz sedang bekerja" data-i18n-alt="about.photoAlt">
+        <img src="hero_2.jpeg" alt="Foto Rd Muhammad Rifqi Elfaz sedang bekerja" data-i18n-alt="about.photoAlt">
       </div>
       <div class="about-text reveal">
         <p data-i18n="about.p1">I am a Full-Stack Developer with over 2 years of professional experience across various companies, complemented by 4 years of freelance experience. Skilled in developing and maintaining web applications using Laravel and CodeIgniter, along with data management through REST APIs. Experienced in working with centralized systems connected to multiple internal units and external parties to support operational processes.</p>
@@ -1216,22 +1213,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
         <div class="timeline-card">
           <span class="timeline-year" data-i18n="experience.job2.year">2022 — Current</span>
           <h3 data-i18n="experience.job2.title">Freelance</h3>
-          <!-- <div class="company">Startup Digital Kreatif</div> -->
           <p data-i18n="experience.job2.desc">Versatile freelance Fullstack Developer experienced in delivering tailor-made web solutions, managing the entire lifecycle from initial needs analysis through to final deployment. Expertly designs and implements responsive, user-centric interfaces utilizing React, JavaScript, jQuery, and Bootstrap to ensure seamless UX. On the backend, builds scalable systems, relational databases, and secure RESTful APIs leveraging Laravel and Node.js. Successfully deployed diverse custom platforms, including SME inventory management systems, online reservation platforms, and robust e-commerce applications, consistently aligning technical execution with unique client business goals..</p>
-          <!-- <div class="tech-tags"><span class="tech-tag">Node.js</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Express</span></div> -->
           <div class="tech-tags"><span class="tech-tag">Laravel</span><span class="tech-tag">Codeigniter</span><span class="tech-tag">React.JS</span><span class="tech-tag">Node.js</span><span class="tech-tag">MySQL</span><span class="tech-tag">GIT</span><span class="tech-tag">Jira</span><span class="tech-tag">API Integration</span><span class="tech-tag">DBeaver</span><span class="tech-tag">PostgreSQL</span></div>
         </div>
       </div>
-      <!-- <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <span class="timeline-year">2019 — 2021</span>
-          <h3>Junior Web Developer</h3>
-          <div class="company">Agensi Web Kreatif</div>
-          <p>Membangun landing page dan sistem CMS sederhana untuk berbagai klien menggunakan PHP native dan CodeIgniter.</p>
-          <div class="tech-tags"><span class="tech-tag">PHP</span><span class="tech-tag">CodeIgniter</span><span class="tech-tag">jQuery</span></div>
-        </div>
-      </div> -->
     </div>
   </div>
 </section>
@@ -1247,14 +1232,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       <p class="section-desc" data-i18n="portfolio.desc">Some projects I have worked on.</p>
     </div>
     <div class="portfolio-grid">
-      <!-- Ulangi blok .project-card ini untuk tiap proyek -->
       <div class="project-card reveal">
         <div class="project-thumb"><img src="hall_gembira.jpg" alt="Tampilan proyek Hall Gembira" data-i18n-alt="portfolio.p1.alt"></div>
         <div class="project-body">
           <h3>Booking Hall Gembira</h3>
           <p data-i18n="portfolio.p1.desc">Integrated management system and admin dashboard to manage badminton court reservations, order inventory, and rental report recapitulation in real-time to improve hall operational efficiency..</p>
           <div class="tech-tags" style="margin-bottom:14px;"><span class="tech-tag">Laravel</span><span class="tech-tag">Bootstrap</span><span class="tech-tag">MySQL</span><span class="tech-tag">jQuery</span></div>
-          <!-- <div class="project-links"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a><a href="#"><i class="fa-brands fa-github"></i> GitHub</a></div> -->
         </div>
       </div>
       <div class="project-card reveal">
@@ -1263,7 +1246,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <h3>Donut Order</h3>
           <p data-i18n="portfolio.p2.desc">An integrated donut e-commerce and order management application, designed to handle product variant customization, secure transaction processing, and real-time order status monitoring..</p>
           <div class="tech-tags" style="margin-bottom:14px;"><span class="tech-tag">Laravel</span><span class="tech-tag">Bootstrap</span><span class="tech-tag">MySQL</span><span class="tech-tag">jQuery</span></div>
-          <!-- <div class="project-links"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a><a href="#"><i class="fa-brands fa-github"></i> GitHub</a></div> -->
         </div>
       </div>
       <div class="project-card reveal">
@@ -1272,7 +1254,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <h3>Vastra</h3>
           <p data-i18n="portfolio.p3.desc">A modern fashion e-commerce platform that facilitates the online sale of clothing, trousers, and accessories, complete with a dynamic catalog system, shopping cart management, and an integrated checkout process.</p>
           <div class="tech-tags" style="margin-bottom:14px;"><span class="tech-tag">Express.js</span><span class="tech-tag">React.js</span><span class="tech-tag">MySQL</span></div>
-          <!-- <div class="project-links"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a><a href="#"><i class="fa-brands fa-github"></i> GitHub</a></div> -->
         </div>
       </div>
     </div>
@@ -1324,124 +1305,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 </section>
 
 <!-- ============================================
-     CERTIFICATIONS
-     ============================================ -->
-<!-- <section class="section" id="certifications">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Sertifikasi</span>
-      <h2 class="section-title">Certifications &amp; <span class="gradient-text">Achievements</span></h2>
-      <p class="section-desc">Sertifikat yang telah saya peroleh untuk menunjang keahlian.</p>
-    </div>
-    <div class="cert-grid">
-      <div class="cert-card reveal">
-        <img src="https://via.placeholder.com/400x220/141a29/4f7cff?text=Certificate+1" alt="Sertifikat AWS Cloud Practitioner">
-        <div class="cert-body"><h3>AWS Cloud Practitioner</h3><span>Amazon Web Services · 2023</span></div>
-      </div>
-      <div class="cert-card reveal">
-        <img src="https://via.placeholder.com/400x220/141a29/9061f9?text=Certificate+2" alt="Sertifikat React Developer">
-        <div class="cert-body"><h3>React Developer Certification</h3><span>Meta · 2022</span></div>
-      </div>
-      <div class="cert-card reveal">
-        <img src="https://via.placeholder.com/400x220/141a29/4f7cff?text=Certificate+3" alt="Sertifikat Laravel Advanced">
-        <div class="cert-body"><h3>Laravel Advanced Development</h3><span>Udemy · 2022</span></div>
-      </div>
-      <div class="cert-card reveal">
-        <img src="https://via.placeholder.com/400x220/141a29/9061f9?text=Certificate+4" alt="Sertifikat Database Design">
-        <div class="cert-body"><h3>Database Design &amp; SQL</h3><span>Coursera · 2021</span></div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- ============================================
-     TESTIMONIALS
-     ============================================ -->
-<!-- <section class="section" id="testimonials" style="background:var(--bg-secondary);">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Testimoni</span>
-      <h2 class="section-title">What Clients <span class="gradient-text">Say</span></h2>
-      <p class="section-desc">Ulasan dari klien dan rekan kerja yang pernah berkolaborasi dengan saya.</p>
-    </div>
-    <div class="testimonial-slider reveal">
-      <div class="testimonial-track">
-        <div class="testimonial-items" id="testimonialItems">
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <i class="fa-solid fa-quote-left"></i>
-              <p>"Dennis sangat komunikatif dan hasil kerjanya rapi. Proyek selesai tepat waktu dengan kualitas kode yang mudah dipelihara."</p>
-              <div class="testimonial-author">
-                <img src="https://via.placeholder.com/60x60/4f7cff/ffffff?text=A" alt="Foto Andi Pratama">
-                <div><h4>Andi Pratama</h4><span>CEO, Startup Kreatif</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <i class="fa-solid fa-quote-left"></i>
-              <p>"Kolaborasi dengan Dennis selalu lancar. Ia memahami kebutuhan bisnis dan menerjemahkannya ke solusi teknis yang tepat."</p>
-              <div class="testimonial-author">
-                <img src="https://via.placeholder.com/60x60/9061f9/ffffff?text=S" alt="Foto Siti Rahmawati">
-                <div><h4>Siti Rahmawati</h4><span>Product Manager</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <i class="fa-solid fa-quote-left"></i>
-              <p>"Sangat profesional dan responsif. Bug yang kami laporkan selalu ditangani cepat tanpa mengorbankan kualitas."</p>
-              <div class="testimonial-author">
-                <img src="https://via.placeholder.com/60x60/4f7cff/ffffff?text=B" alt="Foto Budi Santoso">
-                <div><h4>Budi Santoso</h4><span>CTO, Agensi Digital</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="slider-dots" id="sliderDots"></div>
-      <div class="slider-arrows">
-        <button class="slider-arrow" id="prevSlide" aria-label="Testimoni sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="slider-arrow" id="nextSlide" aria-label="Testimoni selanjutnya"><i class="fa-solid fa-chevron-right"></i></button>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- ============================================
      CONTACT
-     ============================================ -->
-<!-- <section class="section" id="contact">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Contact</span>
-      <h2 class="section-title">Let's Work <span class="gradient-text">Together</span></h2>
-      <p class="section-desc">Have a project or idea? Send me a message and I'll reply soon.</p>
-    </div>
-    <div class="contact-grid">
-      <form class="contact-form reveal" id="contactForm">
-        <div class="form-row">
-          <div class="form-group"><label for="cf-name">Name</label><input id="cf-name" type="text" required placeholder="Nama lengkap Anda"></div>
-          <div class="form-group"><label for="cf-email">Email</label><input id="cf-email" type="email" required placeholder="nama@email.com"></div>
-        </div>
-        <div class="form-group"><label for="cf-subject">Subject</label><input id="cf-subject" type="text" required placeholder="Topik pesan"></div>
-        <div class="form-group"><label for="cf-message">Message</label><textarea id="cf-message" required placeholder="Tulis pesan Anda di sini..."></textarea></div>
-        <button type="submit" class="btn btn-primary" style="align-self:flex-start;"><i class="fa-regular fa-paper-plane"></i> Kirim Pesan</button>
-        <span class="form-submit-msg" id="formMsg"></span>
-      </form>
-      <div class="contact-info reveal">
-        <div class="contact-info-card"><div class="ic"><i class="fa-regular fa-envelope"></i></div><div><div class="label">Email</div><div class="val">ddennn26@gmail.com</div></div></div>
-        <div class="contact-info-card"><div class="ic"><i class="fa-brands fa-whatsapp"></i></div><div><div class="label">WhatsApp</div><div class="val">+62 895 6219 98240</div></div></div>
-        <div class="contact-info-card"><div class="ic"><i class="fa-solid fa-location-dot"></i></div><div><div class="label">Location</div><div class="val">Jambi, Indonesia</div></div></div>
-        <div class="contact-info-card"><div class="ic"><i class="fa-brands fa-github"></i></div><div><div class="label">GitHub</div><div class="val">github.com/Ddennnnn</div></div></div>
-        <div class="contact-info-card"><div class="ic"><i class="fa-brands fa-linkedin-in"></i></div><div><div class="label">LinkedIn</div><div class="val">linkedin.com/in/dennisaditya</div></div></div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- ============================================
-     CONTACT (NEW — informasi kontak saja, tanpa form)
      ============================================ -->
 <section class="section" id="contact">
   <div class="container">
@@ -1565,9 +1429,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas" data-i18n-aria-label="footer.backToTopAria"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-/* ============================================
-   MODE TRANSLATE — EN ⇄ ID (two-way, persisted via localStorage)
-   ============================================ */
 const translations = {
   /* ---------- NAVBAR ---------- */
   'nav.home':{id:'Beranda',en:'Home'},
@@ -1788,7 +1649,6 @@ function applyLanguage(lang){
     if(translations[key]) el.setAttribute('title', translations[key][currentLang]);
   });
 
-  // Update lang toggle button UI
   const flagEl = document.getElementById('langFlag');
   const codeIdEl = document.getElementById('langCodeId');
   const codeEnEl = document.getElementById('langCodeEn');
@@ -1798,7 +1658,6 @@ function applyLanguage(lang){
     codeEnEl.classList.toggle('inactive', currentLang !== 'en');
   }
 
-  // Keep typing-effect roles in sync with the active language
   if(typeof rolesData !== 'undefined'){
     roles = rolesData[currentLang] || rolesData.id;
     roleIndex = 0; charIndex = 0; deleting = false;
@@ -1932,14 +1791,6 @@ function animateCounter(el){
   }
   requestAnimationFrame(step);
 }
-
-/* ============================================
-   TESTIMONIAL SLIDER
-   Catatan: section Testimonials saat ini di-comment di HTML, jadi
-   elemen-elemen di bawah ini belum ada di DOM. Guard ini mencegah
-   error di console; seluruh logika tetap dipertahankan agar slider
-   langsung berfungsi begitu section testimonials diaktifkan lagi.
-   ============================================ */
 const track = document.getElementById('testimonialItems');
 const slides = document.querySelectorAll('.testimonial-slide');
 const dotsWrap = document.getElementById('sliderDots');
@@ -1977,13 +1828,6 @@ const backToTop = document.getElementById('backToTop');
 function toggleBackToTop(){ backToTop.classList.toggle('visible', window.scrollY > 500); }
 backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* ============================================
-   CONTACT FORM (demo — tanpa backend)
-   Catatan: elemen form ini saat ini di-comment di HTML (lihat section
-   CONTACT lama) agar tidak bisa di-submit. Guard di bawah mencegah
-   error di console selama form belum diaktifkan kembali; logikanya
-   tetap dipertahankan agar bisa langsung dipakai lagi nanti.
-   ============================================ */
 const contactForm = document.getElementById('contactForm');
 const formMsg = document.getElementById('formMsg');
 if(contactForm && formMsg){
