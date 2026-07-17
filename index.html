@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rd Muhammad Rifqi Elfaz | Full-Stack Developer Portfolio</title>
+<meta name="description" content="Portfolio profesional Rd Muhammad Rifqi Elfaz, Full-Stack Developer yang berfokus pada pengembangan web modern, REST API, dan solusi backend yang scalable.">
+<meta name="keywords" content="portfolio, full stack developer, web developer, javascript, react, laravel, node.js">
+<meta name="author" content="Rd Muhammad Rifqi Elfaz">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Rd Muhammad Rifqi Elfaz | Full-Stack Developer Portfolio">
+<meta property="og:description" content="Portfolio profesional Full-Stack Developer — proyek, pengalaman, dan keahlian.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://via.placeholder.com/1200x630/0a0e17/4f7cff?text=Dennis+Aditya">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rd Muhammad Rifqi Elfaz | Full-Stack Developer Portfolio">
+<meta name="twitter:description" content="Portfolio profesional Full-Stack Developer — proyek, pengalaman, dan keahlian.">
+
+<!-- Favicon placeholder -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔷</text></svg>">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ============================================
+   1. CSS VARIABLES — ubah di sini untuk ganti tema
+   ============================================ */
+:root{
+  --bg-primary:#0a0e17;
+  --bg-secondary:#0f1420;
+  --bg-card:#141a29;
+  --bg-card-hover:#1a2235;
+  --accent-blue:#4f7cff;
+  --accent-purple:#9061f9;
+  --gradient-main:linear-gradient(135deg,var(--accent-blue),var(--accent-purple));
+  --text-primary:#eef1f8;
+  --text-muted:#8b93a7;
+  --text-dim:#5c6478;
+  --border-color:rgba(255,255,255,.08);
+  --border-hover:rgba(79,124,255,.4);
+  --font-display:'Poppins',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --radius-sm:10px;
+  --radius-md:16px;
+  --radius-lg:24px;
+  --shadow-glow:0 0 40px rgba(79,124,255,.15);
+  --transition:all .35s cubic-bezier(.4,0,.2,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  background:var(--bg-primary);
+  color:var(--text-primary);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+:focus-visible{outline:2px solid var(--accent-blue);outline-offset:3px;}
+
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 24px;
+}
+.section{
+  padding:120px 0;
+  position:relative;
+}
+.section-header{
+  text-align:center;
+  max-width:640px;
+  margin:0 auto 64px;
+}
+.section-eyebrow{
+  display:inline-block;
+  font-family:var(--font-display);
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--accent-blue);
+  margin-bottom:14px;
+}
+.section-title{
+  font-family:var(--font-display);
+  font-size:clamp(28px,4vw,42px);
+  font-weight:700;
+  margin-bottom:16px;
+}
+.section-desc{
+  color:var(--text-muted);
+  font-size:16px;
+}
+.gradient-text{
+  background:var(--gradient-main);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 28px;
+  border-radius:50px;
+  font-weight:600;
+  font-size:15px;
+  transition:var(--transition);
+  white-space:nowrap;
+}
+.btn-primary{
+  background:var(--gradient-main);
+  color:#fff;
+  box-shadow:0 8px 24px rgba(79,124,255,.35);
+}
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(79,124,255,.5);
+}
+.btn-outline{
+  border:1.5px solid var(--border-color);
+  color:var(--text-primary);
+  background:rgba(255,255,255,.02);
+}
+.btn-outline:hover{
+  border-color:var(--border-hover);
+  background:rgba(79,124,255,.08);
+  transform:translateY(-3px);
+}
+
+/* ============================================
+   2. NAVBAR
+   ============================================ */
+.navbar{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1000;
+  padding:18px 0;
+  transition:var(--transition);
+  background:transparent;
+}
+.navbar.scrolled{
+  padding:12px 0;
+  background:rgba(10,14,23,.75);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border-color);
+  box-shadow:0 4px 30px rgba(0,0,0,.3);
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:20px;
+}
+.logo span{color:var(--accent-blue);}
+.nav-menu{
+  display:flex;
+  gap:8px;
+}
+.nav-menu a{
+  padding:8px 14px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:500;
+  color:var(--text-muted);
+  transition:var(--transition);
+  position:relative;
+}
+.nav-menu a:hover,.nav-menu a.active{
+  color:var(--text-primary);
+  background:rgba(255,255,255,.06);
+}
+.nav-actions{display:flex;align-items:center;gap:16px;}
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  z-index:1001;
+}
+.hamburger span{
+  width:24px;height:2px;
+  background:var(--text-primary);
+  transition:var(--transition);
+  border-radius:2px;
+}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* Language Toggle (Mode Translate) */
+.lang-toggle{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:8px 14px;
+  border-radius:50px;
+  border:1.5px solid var(--border-color);
+  background:rgba(255,255,255,.03);
+  color:var(--text-primary);
+  font-size:13px;
+  font-weight:600;
+  transition:var(--transition);
+}
+.lang-toggle:hover{
+  border-color:var(--border-hover);
+  background:rgba(79,124,255,.08);
+  transform:translateY(-2px);
+}
+.lang-toggle .lang-flag{font-size:15px;line-height:1;}
+.lang-toggle .lang-code{letter-spacing:.03em;}
+.lang-toggle .lang-sep{color:var(--text-dim);font-weight:400;}
+.lang-toggle .lang-code.inactive{color:var(--text-dim);font-weight:400;}
+
+/* ============================================
+   3. HERO
+   ============================================ */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  padding-top:100px;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  z-index:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(79,124,255,.18), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(144,97,249,.16), transparent 45%);
+}
+.hero-bg::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse at center, black 40%, transparent 75%);
+}
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  opacity:.5;
+  animation:floatOrb 12s ease-in-out infinite;
+}
+.orb1{width:320px;height:320px;background:var(--accent-blue);top:10%;right:8%;}
+.orb2{width:260px;height:260px;background:var(--accent-purple);bottom:5%;left:5%;animation-delay:-6s;}
+@keyframes floatOrb{
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-30px) scale(1.08);}
+}
+.hero-inner{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;
+  gap:48px;
+}
+.hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px;
+  border:1px solid var(--border-color);
+  border-radius:50px;
+  font-size:13px;
+  color:var(--text-muted);
+  margin-bottom:24px;
+  background:rgba(255,255,255,.03);
+}
+.hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;}
+.hero-name{
+  font-family:var(--font-display);
+  font-size:clamp(36px,5.5vw,64px);
+  font-weight:800;
+  line-height:1.1;
+  margin-bottom:12px;
+}
+.hero-role{
+  font-family:var(--font-display);
+  font-size:clamp(20px,2.6vw,28px);
+  font-weight:600;
+  color:var(--accent-blue);
+  margin-bottom:20px;
+  height:38px;
+}
+.hero-role .cursor{animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+.hero-desc{
+  color:var(--text-muted);
+  font-size:16px;
+  max-width:480px;
+  margin-bottom:32px;
+}
+.hero-actions{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:36px;
+}
+.hero-socials{
+  display:flex;
+  gap:12px;
+}
+.social-icon{
+  width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;
+  border:1px solid var(--border-color);
+  color:var(--text-muted);
+  transition:var(--transition);
+  background:rgba(255,255,255,.02);
+}
+.social-icon:hover{
+  color:#fff;
+  border-color:var(--border-hover);
+  background:var(--gradient-main);
+  transform:translateY(-4px);
+}
+.hero-visual{
+  position:relative;
+  display:flex;
+  justify-content:center;
+}
+.hero-photo-wrap{
+  position:relative;
+  width:340px;
+  height:340px;
+}
+.hero-photo-ring{
+  position:absolute;inset:-14px;
+  border-radius:50%;
+  background:var(--gradient-main);
+  opacity:.5;
+  filter:blur(20px);
+  animation:pulseRing 3.5s ease-in-out infinite;
+}
+@keyframes pulseRing{0%,100%{opacity:.35;}50%{opacity:.65;}}
+.hero-photo{
+  width:100%;height:100%;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid var(--bg-primary);
+  position:relative;
+  z-index:1;
+}
+.scroll-indicator{
+  position:absolute;
+  bottom:32px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  color:var(--text-dim);
+  font-size:12px;
+  z-index:1;
+}
+.scroll-indicator .line{
+  width:1px;height:36px;
+  background:linear-gradient(var(--text-dim),transparent);
+  animation:scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine{0%{opacity:0;transform:scaleY(0);}50%{opacity:1;transform:scaleY(1);}100%{opacity:0;transform:scaleY(0);}}
+
+/* ============================================
+   4. ABOUT
+   ============================================ */
+.about-grid{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:64px;
+  align-items:center;
+}
+.about-photo-wrap{
+  position:relative;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+.about-photo-wrap img{
+  border-radius:var(--radius-lg);
+  filter:grayscale(20%);
+  transition:var(--transition);
+}
+.about-photo-wrap:hover img{filter:grayscale(0%);transform:scale(1.03);}
+.about-photo-wrap::after{
+  content:'';
+  position:absolute;inset:0;
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-lg);
+  box-shadow:inset 0 0 60px rgba(79,124,255,.1);
+}
+.about-text p{
+  color:var(--text-muted);
+  margin-bottom:16px;
+}
+.bio-cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:28px 0;
+}
+.bio-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 16px;
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-sm);
+  transition:var(--transition);
+}
+.bio-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover);}
+.bio-card i{color:var(--accent-blue);font-size:16px;width:20px;}
+.bio-card .label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;}
+.bio-card .value{font-size:14px;font-weight:600;}
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-top:32px;
+}
+.stat-card{
+  text-align:center;
+  padding:20px 12px;
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-md);
+}
+.stat-num{
+  font-family:var(--font-display);
+  font-size:32px;
+  font-weight:800;
+  background:var(--gradient-main);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.stat-label{font-size:12px;color:var(--text-muted);margin-top:4px;}
+
+/* ============================================
+   5. SKILLS
+   ============================================ */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+.skill-category{
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-md);
+  padding:28px;
+  transition:var(--transition);
+}
+.skill-category:hover{border-color:var(--border-hover);box-shadow:var(--shadow-glow);}
+.skill-category h3{
+  font-family:var(--font-display);
+  font-size:17px;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.skill-category h3 i{color:var(--accent-blue);}
+.skill-item{margin-bottom:16px;}
+.skill-item:last-child{margin-bottom:0;}
+.skill-item-top{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  margin-bottom:6px;
+  color:var(--text-muted);
+}
+.skill-bar-track{
+  width:100%;
+  height:6px;
+  background:rgba(255,255,255,.06);
+  border-radius:10px;
+  overflow:hidden;
+}
+.skill-bar-fill{
+  height:100%;
+  border-radius:10px;
+  background:var(--gradient-main);
+  width:0;
+  transition:width 1.4s cubic-bezier(.4,0,.2,1);
+}
+
+/* ============================================
+   6. EXPERIENCE TIMELINE
+   ============================================ */
+.timeline{
+  position:relative;
+  max-width:820px;
+  margin:0 auto;
+}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:20px;
+  top:0;bottom:0;
+  width:2px;
+  background:linear-gradient(var(--border-color),var(--accent-blue),var(--border-color));
+}
+.timeline-item{
+  position:relative;
+  padding-left:60px;
+  margin-bottom:40px;
+}
+.timeline-item:last-child{margin-bottom:0;}
+.timeline-dot{
+  position:absolute;
+  left:12px;top:6px;
+  width:18px;height:18px;
+  border-radius:50%;
+  background:var(--bg-primary);
+  border:3px solid var(--accent-blue);
+  box-shadow:0 0 0 4px rgba(79,124,255,.15);
+}
+.timeline-card{
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-md);
+  padding:24px 28px;
+  transition:var(--transition);
+}
+.timeline-card:hover{border-color:var(--border-hover);transform:translateX(6px);}
+.timeline-year{
+  display:inline-block;
+  font-size:12px;
+  font-weight:600;
+  color:var(--accent-blue);
+  background:rgba(79,124,255,.1);
+  padding:4px 12px;
+  border-radius:50px;
+  margin-bottom:10px;
+}
+.timeline-card h3{font-family:var(--font-display);font-size:18px;margin-bottom:2px;}
+.timeline-card .company{color:var(--text-muted);font-size:14px;margin-bottom:12px;}
+.timeline-card p{color:var(--text-muted);font-size:14px;margin-bottom:14px;}
+.tech-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.tech-tag{
+  font-size:12px;
+  padding:4px 10px;
+  border-radius:6px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border-color);
+  color:var(--text-muted);
+}
+
+/* ============================================
+   7. PORTFOLIO
+   ============================================ */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:28px;
+}
+.project-card{
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  transition:var(--transition);
+}
+.project-card:hover{
+  transform:translateY(-8px);
+  border-color:var(--border-hover);
+  box-shadow:var(--shadow-glow);
+}
+.project-thumb{
+  position:relative;
+  height:200px;
+  overflow:hidden;
+}
+.project-thumb img{width:100%;height:100%;object-fit:cover;transition:var(--transition);}
+.project-card:hover .project-thumb img{transform:scale(1.08);}
+.project-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(10,14,23,.9),transparent 60%);
+  display:flex;
+  align-items:flex-end;
+  padding:16px;
+  opacity:0;
+  transition:var(--transition);
+}
+.project-card:hover .project-overlay{opacity:1;}
+.project-body{padding:22px;}
+.project-body h3{font-family:var(--font-display);font-size:17px;margin-bottom:8px;}
+.project-body p{color:var(--text-muted);font-size:14px;margin-bottom:14px;}
+.project-links{display:flex;gap:10px;}
+.project-links a{
+  flex:1;
+  text-align:center;
+  padding:9px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:600;
+  border:1px solid var(--border-color);
+  transition:var(--transition);
+}
+.project-links a:hover{background:var(--gradient-main);border-color:transparent;}
+
+/* ============================================
+   8. SERVICES
+   ============================================ */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+.service-card{
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-md);
+  padding:32px 26px;
+  transition:var(--transition);
+}
+.service-card:hover{
+  border-color:var(--border-hover);
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-glow);
+}
+.service-icon{
+  width:52px;height:52px;
+  border-radius:14px;
+  background:var(--gradient-main);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+  margin-bottom:20px;
+}
+.service-card h3{font-family:var(--font-display);font-size:17px;margin-bottom:10px;}
+.service-card p{color:var(--text-muted);font-size:14px;}
+
+/* ============================================
+   9. EDUCATION
+   ============================================ */
+.edu-timeline{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:20px;}
+.edu-card{
+  display:flex;
+  gap:20px;
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-md);
+  padding:24px 28px;
+  transition:var(--transition);
+}
+.edu-card:hover{border-color:var(--border-hover);}
+.edu-icon{
+  flex-shrink:0;
+  width:48px;height:48px;
+  border-radius:12px;
+  background:rgba(79,124,255,.1);
+  color:var(--accent-blue);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.edu-card h3{font-family:var(--font-display);font-size:16px;}
+.edu-card .edu-sub{color:var(--text-muted);font-size:13px;margin:2px 0 8px;}
+.edu-card p{color:var(--text-muted);font-size:14px;}
+
+/* ============================================
+   10. CERTIFICATIONS
+   ============================================ */
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+.cert-card{
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  transition:var(--transition);
+}
+.cert-card:hover{transform:translateY(-6px);border-color:var(--border-hover);}
+.cert-card img{width:100%;height:150px;object-fit:cover;}
+.cert-body{padding:18px 20px;}
+.cert-body h3{font-family:var(--font-display);font-size:15px;margin-bottom:4px;}
+.cert-body span{font-size:13px;color:var(--text-muted);}
+
+/* ============================================
+   11. TESTIMONIALS
+   ============================================ */
+.testimonial-slider{
+  max-width:720px;
+  margin:0 auto;
+  position:relative;
+}
+.testimonial-track{
+  overflow:hidden;
+}
+.testimonial-items{
+  display:flex;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+}
+.testimonial-slide{
+  flex:0 0 100%;
+  padding:8px;
+}
+.testimonial-card{
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-lg);
+  padding:40px;
+  text-align:center;
+}
+.testimonial-card i.fa-quote-left{color:var(--accent-blue);font-size:26px;margin-bottom:18px;}
+.testimonial-card p{color:var(--text-muted);font-size:16px;margin-bottom:24px;font-style:italic;}
+.testimonial-author{display:flex;align-items:center;justify-content:center;gap:14px;}
+.testimonial-author img{width:52px;height:52px;border-radius:50%;object-fit:cover;}
+.testimonial-author h4{font-family:var(--font-display);font-size:15px;}
+.testimonial-author span{font-size:13px;color:var(--text-dim);}
+.slider-dots{display:flex;justify-content:center;gap:8px;margin-top:28px;}
+.slider-dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--border-color);
+  transition:var(--transition);
+}
+.slider-dot.active{width:24px;border-radius:6px;background:var(--gradient-main);}
+.slider-arrows{
+  display:flex;justify-content:center;gap:12px;margin-top:20px;
+}
+.slider-arrow{
+  width:40px;height:40px;
+  border-radius:50%;
+  border:1px solid var(--border-color);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-muted);
+  transition:var(--transition);
+}
+.slider-arrow:hover{border-color:var(--border-hover);color:var(--text-primary);}
+
+/* ============================================
+   12. CONTACT
+   ============================================ */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr .8fr;
+  gap:48px;
+}
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.form-group{display:flex;flex-direction:column;gap:8px;}
+.form-group label{font-size:13px;color:var(--text-muted);}
+.form-group input,.form-group textarea{
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-sm);
+  padding:13px 16px;
+  color:var(--text-primary);
+  font-family:inherit;
+  font-size:14px;
+  transition:var(--transition);
+}
+.form-group input:focus,.form-group textarea:focus{
+  border-color:var(--accent-blue);
+  background:var(--bg-card-hover);
+}
+.form-group textarea{resize:vertical;min-height:130px;}
+.contact-info{display:flex;flex-direction:column;gap:16px;}
+.contact-info-card{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-md);
+  padding:18px 20px;
+  transition:var(--transition);
+}
+.contact-info-card:hover{border-color:var(--border-hover);transform:translateX(4px);}
+.contact-info-card .ic{
+  width:44px;height:44px;
+  border-radius:12px;
+  background:var(--gradient-main);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;
+  flex-shrink:0;
+}
+.contact-info-card .label{font-size:12px;color:var(--text-dim);}
+.contact-info-card .val{font-size:14px;font-weight:600;}
+.form-submit-msg{font-size:13px;color:#4ade80;height:16px;}
+
+/* ============================================
+   12b. CONTACT (NEW — info only, no form)
+   ============================================ */
+.contact-info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+}
+.contact-info-tile{
+  position:relative;
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-md);
+  padding:24px;
+  overflow:hidden;
+  transition:var(--transition);
+}
+.contact-info-tile::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:var(--gradient-main);
+  opacity:0;
+  transition:var(--transition);
+}
+.contact-info-tile:hover{
+  border-color:var(--border-hover);
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-glow);
+}
+.contact-info-tile:hover::before{opacity:.04;}
+.contact-info-tile .cit-icon{
+  position:relative;
+  flex-shrink:0;
+  width:48px;height:48px;
+  border-radius:14px;
+  background:var(--gradient-main);
+  display:flex;align-items:center;justify-content:center;
+  font-size:19px;
+  color:#fff;
+  transition:var(--transition);
+}
+.contact-info-tile:hover .cit-icon{transform:scale(1.08) rotate(-4deg);}
+.contact-info-tile .cit-body{position:relative;flex:1;min-width:0;}
+.contact-info-tile .cit-label{font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.contact-info-tile .cit-value{font-size:15px;font-weight:600;margin-bottom:12px;word-break:break-word;}
+.contact-info-tile .cit-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--accent-blue);
+  transition:var(--transition);
+}
+.contact-info-tile .cit-link i{font-size:11px;transition:var(--transition);}
+.contact-info-tile .cit-link:hover{gap:9px;color:#fff;}
+.contact-cta-banner{
+  margin-top:36px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:20px;
+  background:var(--bg-card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-lg);
+  padding:32px 36px;
+  position:relative;
+  overflow:hidden;
+}
+.contact-cta-banner::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 90% 20%, rgba(79,124,255,.12), transparent 55%);
+  pointer-events:none;
+}
+.contact-cta-banner h3{font-family:var(--font-display);font-size:20px;margin-bottom:6px;position:relative;}
+.contact-cta-banner p{color:var(--text-muted);font-size:14px;position:relative;}
+.contact-cta-actions{display:flex;gap:14px;flex-wrap:wrap;position:relative;}
+@media(max-width:768px){
+  .contact-info-grid{grid-template-columns:1fr;}
+  .contact-cta-banner{flex-direction:column;align-items:flex-start;text-align:left;}
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer{
+  border-top:1px solid var(--border-color);
+  padding:56px 0 28px;
+  background:var(--bg-secondary);
+}
+.footer-top{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:40px;
+  margin-bottom:40px;
+}
+.footer-brand p{color:var(--text-muted);font-size:14px;margin-top:12px;max-width:280px;}
+.footer-col h4{font-family:var(--font-display);font-size:14px;margin-bottom:16px;}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul a{color:var(--text-muted);font-size:14px;transition:var(--transition);}
+.footer-col ul a:hover{color:var(--accent-blue);}
+.footer-socials{display:flex;gap:10px;margin-top:16px;}
+.footer-bottom{
+  border-top:1px solid var(--border-color);
+  padding-top:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  font-size:13px;
+  color:var(--text-dim);
+}
+.back-to-top{
+  position:fixed;
+  bottom:28px;right:28px;
+  width:48px;height:48px;
+  border-radius:50%;
+  background:var(--gradient-main);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(10px);
+  transition:var(--transition);
+  z-index:999;
+  box-shadow:0 8px 24px rgba(79,124,255,.4);
+}
+.back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0);}
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+.reveal{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media(max-width:992px){
+  .hero-inner{grid-template-columns:1fr;text-align:center;}
+  .hero-desc{margin-left:auto;margin-right:auto;}
+  .hero-actions,.hero-socials{justify-content:center;}
+  .hero-visual{order:-1;}
+  .about-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .nav-menu{
+    position:fixed;
+    top:0;right:-100%;
+    width:min(320px,80vw);
+    height:100vh;
+    background:var(--bg-secondary);
+    flex-direction:column;
+    padding:100px 32px;
+    gap:6px;
+    transition:right .4s cubic-bezier(.4,0,.2,1);
+    border-left:1px solid var(--border-color);
+  }
+  .nav-menu.active{right:0;}
+  .nav-menu a{width:100%;padding:12px 14px;}
+  .hamburger{display:flex;}
+  .bio-cards{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;}
+  .section{padding:80px 0;}
+  .hero-photo-wrap{width:260px;height:260px;}
+}
+@media(max-width:480px){
+  .hero-actions{flex-direction:column;width:100%;}
+  .btn{width:100%;justify-content:center;}
+}
+@media(max-width:576px){
+  .nav-actions{gap:10px;}
+  .lang-toggle{padding:8px 10px;font-size:0;gap:0;}
+  .lang-toggle .lang-flag{font-size:16px;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
+}
+
+/* Overlay for mobile menu */
+.menu-backdrop{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.5);
+  opacity:0;visibility:hidden;
+  transition:var(--transition);
+  z-index:999;
+}
+.menu-backdrop.active{opacity:1;visibility:visible;}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="logo">Ddennnnn<span>.dev</span></a>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#home" class="nav-link" data-i18n="nav.home">Home</a>
+      <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
+      <a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a>
+      <a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a>
+      <a href="#portfolio" class="nav-link" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="#services" class="nav-link" data-i18n="nav.services">Services</a>
+      <a href="#education" class="nav-link" data-i18n="nav.education">Education</a>
+      <!-- <a href="#certifications" class="nav-link" data-i18n="nav.certifications">Certifications</a>
+      <a href="#testimonials" class="nav-link" data-i18n="nav.testimonials">Testimonials</a> -->
+      <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="lang-toggle" id="langToggle" type="button" aria-label="Ganti bahasa / Switch language">
+        <span class="lang-flag" id="langFlag">🇮🇩</span><span class="lang-code" id="langCodeId">ID</span><span class="lang-sep">/</span><span class="lang-code inactive" id="langCodeEn">EN</span>
+      </button>
+      <a href="#contact" class="btn btn-primary" style="padding:10px 20px;font-size:14px;" data-i18n="nav.hireMe">Hire Me</a>
+      <button class="hamburger" id="hamburger" aria-label="Buka menu navigasi" aria-expanded="false" data-i18n-aria-label="nav.menuAria">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="menu-backdrop" id="menuBackdrop"></div>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+  </div>
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span class="dot"></span> <span data-i18n="hero.eyebrow">Terbuka untuk peluang baru</span></div>
+      <h1 class="hero-name" data-i18n-html="hero.greeting">Halo, saya <span class="gradient-text">Rd Muhammad Rifqi Elfaz</span></h1>
+      <div class="hero-role"><span id="typedRole"></span><span class="cursor">|</span></div>
+      <p class="hero-desc" data-i18n="hero.desc">Full-Stack Developer yang membangun aplikasi web modern, cepat, dan mudah digunakan — dari desain antarmuka hingga arsitektur backend dan REST API.</p>
+      <div class="hero-actions">
+        <a href="CV_Rd Muhammad Rifqi Elfaz.pdf" class="btn btn-primary" download aria-label="Unduh CV" data-i18n-aria-label="hero.downloadAria"><i class="fa-solid fa-download"></i> <span data-i18n="hero.downloadCV">Download CV</span></a>
+        <a href="#contact" class="btn btn-outline" aria-label="Hubungi saya" data-i18n-aria-label="hero.contactAria"><i class="fa-regular fa-paper-plane"></i> <span data-i18n="hero.contactMe">Contact Me</span></a>
+      </div>
+      <div class="hero-socials">
+        <a href="#" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-icon" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-ring" aria-hidden="true"></div>
+        <img class="hero-photo" src="IMG_4064.jpg" alt="Foto profil Rd Muhammad Rifqi Elfaz" data-i18n-alt="hero.photoAlt">
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">
+    <span data-i18n="hero.scroll">Scroll</span>
+    <div class="line"></div>
+  </div>
+</section>
+
+<!-- ============================================
+     ABOUT
+     ============================================ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="about.eyebrow">About Me</span>
+      <h2 class="section-title" data-i18n-html="about.title">Getting to Know <span class="gradient-text">You Better</span></h2>
+      <p class="section-desc" data-i18n="about.desc">A little story about my journey and how I work.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal">
+        <img src="WhatsApp Image 2026-07-17 at 11.32.44.jpeg" alt="Foto Rd Muhammad Rifqi Elfaz sedang bekerja" data-i18n-alt="about.photoAlt">
+      </div>
+      <div class="about-text reveal">
+        <p data-i18n="about.p1">I am a Full-Stack Developer with over 2 years of professional experience across various companies, complemented by 4 years of freelance experience. Skilled in developing and maintaining web applications using Laravel and CodeIgniter, along with data management through REST APIs. Experienced in working with centralized systems connected to multiple internal units and external parties to support operational processes.</p>
+        <p data-i18n="about.p2">I have strong skills in data processing and analysis, building monitoring and reporting features, as well as troubleshooting and system improvements. I have a solid understanding of business workflows, can work both independently and within a team, and am accustomed to completing tasks accurately, on time, and with full responsibility.</p>
+
+        <div class="bio-cards">
+          <div class="bio-card"><i class="fa-regular fa-user"></i><div><div class="label" data-i18n="about.bio.name">Name</div><div class="value">Rd Muhammad Rifqi Elfaz</div></div></div>
+          <div class="bio-card"><i class="fa-solid fa-location-dot"></i><div><div class="label" data-i18n="about.bio.location">Location</div><div class="value">Jambi, Indonesia</div></div></div>
+          <div class="bio-card"><i class="fa-regular fa-envelope"></i><div><div class="label" data-i18n="about.bio.email">Email</div><div class="value">ddennn26@gmail.com</div></div></div>
+          <div class="bio-card"><i class="fa-solid fa-graduation-cap"></i><div><div class="label" data-i18n="about.bio.education">Education</div><div class="value" data-i18n="about.bio.educationVal">Bachelor of Information Systems</div></div></div>
+          <div class="bio-card"><i class="fa-solid fa-briefcase"></i><div><div class="label" data-i18n="about.bio.experience">Experience</div><div class="value" data-i18n="about.bio.experienceVal">3+ Tahun</div></div></div>
+          <div class="bio-card"><i class="fa-solid fa-laptop-code"></i><div><div class="label" data-i18n="about.bio.freelance">Freelance</div><div class="value" data-i18n="about.bio.freelanceVal">Available</div></div></div>
+          <div class="bio-card"><i class="fa-solid fa-language"></i><div><div class="label" data-i18n="about.bio.language">Language</div><div class="value">ID, EN</div></div></div>
+          <div class="bio-card"><i class="fa-regular fa-circle-check"></i><div><div class="label" data-i18n="about.bio.status">Status</div><div class="value" data-i18n="about.bio.statusVal">Actively Working</div></div></div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card"><div class="stat-num" data-count="3">0</div><div class="stat-label" data-i18n="about.stats.years">Years Experience</div></div>
+          <div class="stat-card"><div class="stat-num" data-count="42">0</div><div class="stat-label" data-i18n="about.stats.projects">Projects</div></div>
+          <div class="stat-card"><div class="stat-num" data-count="28">0</div><div class="stat-label" data-i18n="about.stats.clients">Happy Clients</div></div>
+          <div class="stat-card"><div class="stat-num" data-count="15">0</div><div class="stat-label" data-i18n="about.stats.tech">Technologies</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SKILLS
+     ============================================ -->
+<section class="section" id="skills" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="skills.eyebrow">Keahlian</span>
+      <h2 class="section-title" data-i18n-html="skills.title">Skills &amp; <span class="gradient-text">Technologies</span></h2>
+      <p class="section-desc" data-i18n="skills.desc">Tools and technology that I use every day.</p>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-category reveal">
+        <h3><i class="fa-solid fa-display"></i> <span data-i18n="skills.cat.frontend">Frontend</span></h3>
+        <div class="skill-item"><div class="skill-item-top"><span>HTML</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>CSS</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>JavaScript</span><span>88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>React</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>Vue</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div></div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3><i class="fa-solid fa-server"></i> <span data-i18n="skills.cat.backend">Backend</span></h3>
+        <div class="skill-item"><div class="skill-item-top"><span>PHP</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>Laravel</span><span>88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>CodeIgniter</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>Node.js</span><span>82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3><i class="fa-solid fa-database"></i> <span data-i18n="skills.cat.database">Database</span></h3>
+        <div class="skill-item"><div class="skill-item-top"><span>MySQL</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>PostgreSQL</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div></div>
+        <!-- <div class="skill-item"><div class="skill-item-top"><span>SQL Server</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div></div> -->
+      </div>
+
+      <div class="skill-category reveal">
+        <h3><i class="fa-solid fa-toolbox"></i> <span data-i18n="skills.cat.tools">Tools</span></h3>
+        <div class="skill-item"><div class="skill-item-top"><span>Git</span><span>92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>GitHub</span><span>92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>Docker</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>Postman</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>VS Code</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>DBeaver</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="55"></div></div></div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3><i class="fa-solid fa-layer-group"></i> <span data-i18n="skills.cat.other">Other</span></h3>
+        <div class="skill-item"><div class="skill-item-top"><span>REST API</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+        <!-- <div class="skill-item"><div class="skill-item-top"><span>Linux</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div></div> -->
+        <div class="skill-item"><div class="skill-item-top"><span>Responsive Design</span><span>92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div></div>
+        <div class="skill-item"><div class="skill-item-top"><span>UI/UX</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
+        <!-- <div class="skill-item"><div class="skill-item-top"><span>Agile</span><span>78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div></div> -->
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     EXPERIENCE
+     ============================================ -->
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="experience.eyebrow">Perjalanan Karier</span>
+      <h2 class="section-title" data-i18n-html="experience.title">Work <span class="gradient-text">Experience</span></h2>
+      <p class="section-desc" data-i18n="experience.desc">My work experience history in various companies.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-year" data-i18n="experience.job1.year">2024 — Current</span>
+          <h3>Senior Full-Stack Developer</h3>
+          <div class="company">PT Sinar Sentosa Primatama</div>
+          <p data-i18n="experience.job1.desc">Dynamic Fullstack Developer with proven expertise in building robust, data-driven web applications using Laravel, CodeIgniter, MySQL, and REST APIs. Adept at engineering complex integrations, notably launching a centralized data system that seamlessly connected a main dealer partner with extensive provincial networks. Proven track record in developing high-impact monitoring, reporting, and real-time sales data analysis features that drive business insights. Additionally, designed and optimized secure, high-performance APIs for cross-platform React Native mobile applications, empowering field sales teams and dealer networks with reliable, on-the-go data access..</p>
+          <div class="tech-tags"><span class="tech-tag">Codeigniter</span><span class="tech-tag">MySQL</span><span class="tech-tag">Docker</span><span class="tech-tag">GIT</span><span class="tech-tag">Jira</span><span class="tech-tag">API Integration</span><span class="tech-tag">DBeaver</span><span class="tech-tag">PostgreSQL</span></div>
+          <!-- <div class="tech-tags"><span class="tech-tag">Laravel</span><span class="tech-tag">React</span><span class="tech-tag">MySQL</span><span class="tech-tag">Docker</span></div> -->
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-year" data-i18n="experience.job2.year">2022 — Current</span>
+          <h3 data-i18n="experience.job2.title">Freelance</h3>
+          <!-- <div class="company">Startup Digital Kreatif</div> -->
+          <p data-i18n="experience.job2.desc">Versatile freelance Fullstack Developer experienced in delivering tailor-made web solutions, managing the entire lifecycle from initial needs analysis through to final deployment. Expertly designs and implements responsive, user-centric interfaces utilizing React, JavaScript, jQuery, and Bootstrap to ensure seamless UX. On the backend, builds scalable systems, relational databases, and secure RESTful APIs leveraging Laravel and Node.js. Successfully deployed diverse custom platforms, including SME inventory management systems, online reservation platforms, and robust e-commerce applications, consistently aligning technical execution with unique client business goals..</p>
+          <!-- <div class="tech-tags"><span class="tech-tag">Node.js</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Express</span></div> -->
+          <div class="tech-tags"><span class="tech-tag">Laravel</span><span class="tech-tag">Codeigniter</span><span class="tech-tag">React.JS</span><span class="tech-tag">Node.js</span><span class="tech-tag">MySQL</span><span class="tech-tag">GIT</span><span class="tech-tag">Jira</span><span class="tech-tag">API Integration</span><span class="tech-tag">DBeaver</span><span class="tech-tag">PostgreSQL</span></div>
+        </div>
+      </div>
+      <!-- <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-year">2019 — 2021</span>
+          <h3>Junior Web Developer</h3>
+          <div class="company">Agensi Web Kreatif</div>
+          <p>Membangun landing page dan sistem CMS sederhana untuk berbagai klien menggunakan PHP native dan CodeIgniter.</p>
+          <div class="tech-tags"><span class="tech-tag">PHP</span><span class="tech-tag">CodeIgniter</span><span class="tech-tag">jQuery</span></div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PORTFOLIO
+     ============================================ -->
+<section class="section" id="portfolio" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="portfolio.eyebrow">My Work</span>
+      <h2 class="section-title" data-i18n-html="portfolio.title">Featured <span class="gradient-text">Projects</span></h2>
+      <p class="section-desc" data-i18n="portfolio.desc">Some projects I have worked on.</p>
+    </div>
+    <div class="portfolio-grid">
+      <!-- Ulangi blok .project-card ini untuk tiap proyek -->
+      <div class="project-card reveal">
+        <div class="project-thumb"><img src="hall_gembira.jpg" alt="Tampilan proyek Hall Gembira" data-i18n-alt="portfolio.p1.alt"></div>
+        <div class="project-body">
+          <h3>Booking Hall Gembira</h3>
+          <p data-i18n="portfolio.p1.desc">Integrated management system and admin dashboard to manage badminton court reservations, order inventory, and rental report recapitulation in real-time to improve hall operational efficiency..</p>
+          <div class="tech-tags" style="margin-bottom:14px;"><span class="tech-tag">Laravel</span><span class="tech-tag">Bootstrap</span><span class="tech-tag">MySQL</span><span class="tech-tag">jQuery</span></div>
+          <!-- <div class="project-links"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a><a href="#"><i class="fa-brands fa-github"></i> GitHub</a></div> -->
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb"><img src="donut.jpg" alt="Tampilan proyek Aplikasi Donut" data-i18n-alt="portfolio.p2.alt"></div>
+        <div class="project-body">
+          <h3>Donut Order</h3>
+          <p data-i18n="portfolio.p2.desc">An integrated donut e-commerce and order management application, designed to handle product variant customization, secure transaction processing, and real-time order status monitoring..</p>
+          <div class="tech-tags" style="margin-bottom:14px;"><span class="tech-tag">Laravel</span><span class="tech-tag">Bootstrap</span><span class="tech-tag">MySQL</span><span class="tech-tag">jQuery</span></div>
+          <!-- <div class="project-links"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a><a href="#"><i class="fa-brands fa-github"></i> GitHub</a></div> -->
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb"><img src="vastra.jpg" alt="Tampilan proyek Vastra" data-i18n-alt="portfolio.p3.alt"></div>
+        <div class="project-body">
+          <h3>Vastra</h3>
+          <p data-i18n="portfolio.p3.desc">A modern fashion e-commerce platform that facilitates the online sale of clothing, trousers, and accessories, complete with a dynamic catalog system, shopping cart management, and an integrated checkout process.</p>
+          <div class="tech-tags" style="margin-bottom:14px;"><span class="tech-tag">Express.js</span><span class="tech-tag">React.js</span><span class="tech-tag">MySQL</span></div>
+          <!-- <div class="project-links"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a><a href="#"><i class="fa-brands fa-github"></i> GitHub</a></div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SERVICES
+     ============================================ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="services.eyebrow">Layanan</span>
+      <h2 class="section-title" data-i18n-html="services.title">What I <span class="gradient-text">Offer</span></h2>
+      <p class="section-desc" data-i18n="services.desc">Services that I can help you with for your project needs.</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-code"></i></div><h3 data-i18n="services.s1.title">Web Development</h3><p data-i18n="services.s1.desc">Building modern, fast, and responsive websites tailored to your business needs.</p></div>
+        <div class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-server"></i></div><h3 data-i18n="services.s2.title">Backend Development</h3><p data-i18n="services.s2.desc">Designing scalable, secure, and easily extendable backend architectures.</p></div>
+        <div class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-plug"></i></div><h3 data-i18n="services.s3.title">REST API</h3><p data-i18n="services.s3.desc">Building and documenting REST APIs for seamless web and mobile application integration.</p></div>
+        <div class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-database"></i></div><h3 data-i18n="services.s4.title">Database Design</h3><p data-i18n="services.s4.desc">Designing efficient database structures tailored to the scale and needs of your application.</p></div>
+        <div class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-bug"></i></div><h3 data-i18n="services.s5.title">Bug Fixing</h3><p data-i18n="services.s5.desc">Quickly identifying and resolving bugs without disrupting your running system.</p></div>
+        <div class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-gears"></i></div><h3 data-i18n="services.s6.title">Maintenance</h3><p data-i18n="services.s6.desc">Regular maintenance services to ensure the continuous performance and security of your application.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     EDUCATION
+     ============================================ -->
+<section class="section" id="education" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="education.eyebrow">Riwayat</span>
+      <h2 class="section-title" data-i18n-html="education.title">Education <span class="gradient-text">Background</span></h2>
+      <p class="section-desc" data-i18n="education.desc">My formal educational background.</p>
+    </div>
+    <div class="edu-timeline">
+      <div class="edu-card reveal">
+        <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div>
+          <h3 data-i18n="education.e1.title">S1 Sistem Informasi</h3>
+          <div class="edu-sub">Universitas Dinamika Bangsa · 2020 — 2024</div>
+          <p data-i18n="education.e1.desc">Fokus pada rekayasa perangkat lunak dan pengembangan sistem berbasis web, IPK 3.86/4.0.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     CERTIFICATIONS
+     ============================================ -->
+<!-- <section class="section" id="certifications">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Sertifikasi</span>
+      <h2 class="section-title">Certifications &amp; <span class="gradient-text">Achievements</span></h2>
+      <p class="section-desc">Sertifikat yang telah saya peroleh untuk menunjang keahlian.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <img src="https://via.placeholder.com/400x220/141a29/4f7cff?text=Certificate+1" alt="Sertifikat AWS Cloud Practitioner">
+        <div class="cert-body"><h3>AWS Cloud Practitioner</h3><span>Amazon Web Services · 2023</span></div>
+      </div>
+      <div class="cert-card reveal">
+        <img src="https://via.placeholder.com/400x220/141a29/9061f9?text=Certificate+2" alt="Sertifikat React Developer">
+        <div class="cert-body"><h3>React Developer Certification</h3><span>Meta · 2022</span></div>
+      </div>
+      <div class="cert-card reveal">
+        <img src="https://via.placeholder.com/400x220/141a29/4f7cff?text=Certificate+3" alt="Sertifikat Laravel Advanced">
+        <div class="cert-body"><h3>Laravel Advanced Development</h3><span>Udemy · 2022</span></div>
+      </div>
+      <div class="cert-card reveal">
+        <img src="https://via.placeholder.com/400x220/141a29/9061f9?text=Certificate+4" alt="Sertifikat Database Design">
+        <div class="cert-body"><h3>Database Design &amp; SQL</h3><span>Coursera · 2021</span></div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- ============================================
+     TESTIMONIALS
+     ============================================ -->
+<!-- <section class="section" id="testimonials" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Testimoni</span>
+      <h2 class="section-title">What Clients <span class="gradient-text">Say</span></h2>
+      <p class="section-desc">Ulasan dari klien dan rekan kerja yang pernah berkolaborasi dengan saya.</p>
+    </div>
+    <div class="testimonial-slider reveal">
+      <div class="testimonial-track">
+        <div class="testimonial-items" id="testimonialItems">
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <i class="fa-solid fa-quote-left"></i>
+              <p>"Dennis sangat komunikatif dan hasil kerjanya rapi. Proyek selesai tepat waktu dengan kualitas kode yang mudah dipelihara."</p>
+              <div class="testimonial-author">
+                <img src="https://via.placeholder.com/60x60/4f7cff/ffffff?text=A" alt="Foto Andi Pratama">
+                <div><h4>Andi Pratama</h4><span>CEO, Startup Kreatif</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <i class="fa-solid fa-quote-left"></i>
+              <p>"Kolaborasi dengan Dennis selalu lancar. Ia memahami kebutuhan bisnis dan menerjemahkannya ke solusi teknis yang tepat."</p>
+              <div class="testimonial-author">
+                <img src="https://via.placeholder.com/60x60/9061f9/ffffff?text=S" alt="Foto Siti Rahmawati">
+                <div><h4>Siti Rahmawati</h4><span>Product Manager</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <i class="fa-solid fa-quote-left"></i>
+              <p>"Sangat profesional dan responsif. Bug yang kami laporkan selalu ditangani cepat tanpa mengorbankan kualitas."</p>
+              <div class="testimonial-author">
+                <img src="https://via.placeholder.com/60x60/4f7cff/ffffff?text=B" alt="Foto Budi Santoso">
+                <div><h4>Budi Santoso</h4><span>CTO, Agensi Digital</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+      <div class="slider-arrows">
+        <button class="slider-arrow" id="prevSlide" aria-label="Testimoni sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="slider-arrow" id="nextSlide" aria-label="Testimoni selanjutnya"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- ============================================
+     CONTACT
+     ============================================ -->
+<!-- <section class="section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Contact</span>
+      <h2 class="section-title">Let's Work <span class="gradient-text">Together</span></h2>
+      <p class="section-desc">Have a project or idea? Send me a message and I'll reply soon.</p>
+    </div>
+    <div class="contact-grid">
+      <form class="contact-form reveal" id="contactForm">
+        <div class="form-row">
+          <div class="form-group"><label for="cf-name">Name</label><input id="cf-name" type="text" required placeholder="Nama lengkap Anda"></div>
+          <div class="form-group"><label for="cf-email">Email</label><input id="cf-email" type="email" required placeholder="nama@email.com"></div>
+        </div>
+        <div class="form-group"><label for="cf-subject">Subject</label><input id="cf-subject" type="text" required placeholder="Topik pesan"></div>
+        <div class="form-group"><label for="cf-message">Message</label><textarea id="cf-message" required placeholder="Tulis pesan Anda di sini..."></textarea></div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;"><i class="fa-regular fa-paper-plane"></i> Kirim Pesan</button>
+        <span class="form-submit-msg" id="formMsg"></span>
+      </form>
+      <div class="contact-info reveal">
+        <div class="contact-info-card"><div class="ic"><i class="fa-regular fa-envelope"></i></div><div><div class="label">Email</div><div class="val">ddennn26@gmail.com</div></div></div>
+        <div class="contact-info-card"><div class="ic"><i class="fa-brands fa-whatsapp"></i></div><div><div class="label">WhatsApp</div><div class="val">+62 895 6219 98240</div></div></div>
+        <div class="contact-info-card"><div class="ic"><i class="fa-solid fa-location-dot"></i></div><div><div class="label">Location</div><div class="val">Jambi, Indonesia</div></div></div>
+        <div class="contact-info-card"><div class="ic"><i class="fa-brands fa-github"></i></div><div><div class="label">GitHub</div><div class="val">github.com/Ddennnnn</div></div></div>
+        <div class="contact-info-card"><div class="ic"><i class="fa-brands fa-linkedin-in"></i></div><div><div class="label">LinkedIn</div><div class="val">linkedin.com/in/dennisaditya</div></div></div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- ============================================
+     CONTACT (NEW — informasi kontak saja, tanpa form)
+     ============================================ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow" data-i18n="contact.eyebrow">Contact</span>
+      <h2 class="section-title" data-i18n-html="contact.title">Let's Work <span class="gradient-text">Together</span></h2>
+      <p class="section-desc" data-i18n="contact.desc">Have a project or idea? Feel free to reach out through any of the channels below.</p>
+    </div>
+
+    <div class="contact-info-grid">
+      <div class="contact-info-tile reveal">
+        <div class="cit-icon"><i class="fa-regular fa-envelope"></i></div>
+        <div class="cit-body">
+          <div class="cit-label" data-i18n="contact.email.label">Email</div>
+          <div class="cit-value">ddennn26@gmail.com</div>
+          <a href="mailto:ddennn26@gmail.com" class="cit-link" data-i18n-aria-label="contact.email.aria" aria-label="Kirim email"><span data-i18n="contact.email.cta">Send an email</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="contact-info-tile reveal">
+        <div class="cit-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="cit-body">
+          <div class="cit-label" data-i18n="contact.whatsapp.label">WhatsApp</div>
+          <div class="cit-value">+62 895 6219 98240</div>
+          <a href="https://wa.me/6289562199240" target="_blank" rel="noopener" class="cit-link" data-i18n-aria-label="contact.whatsapp.aria" aria-label="Chat via WhatsApp"><span data-i18n="contact.whatsapp.cta">Chat now</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="contact-info-tile reveal">
+        <div class="cit-icon"><i class="fa-brands fa-github"></i></div>
+        <div class="cit-body">
+          <div class="cit-label">GitHub</div>
+          <div class="cit-value">github.com/Ddennnnn</div>
+          <a href="https://github.com/Ddennnnn" target="_blank" rel="noopener" class="cit-link" data-i18n-aria-label="contact.github.aria" aria-label="Buka profil GitHub"><span data-i18n="contact.github.cta">View profile</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="contact-info-tile reveal">
+        <div class="cit-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+        <div class="cit-body">
+          <div class="cit-label">LinkedIn</div>
+          <div class="cit-value">www.linkedin.com/in/rd-muhammad-rifqi-elfaz</div>
+          <a href="https://www.linkedin.com/in/rd-muhammad-rifqi-elfaz-731278343" target="_blank" rel="noopener" class="cit-link" data-i18n-aria-label="contact.linkedin.aria" aria-label="Buka profil LinkedIn"><span data-i18n="contact.linkedin.cta">View profile</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="contact-info-tile reveal">
+        <div class="cit-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="cit-body">
+          <div class="cit-label" data-i18n="contact.location.label">Location</div>
+          <div class="cit-value">Jambi, Indonesia</div>
+          <a href="https://maps.google.com/?q=Jambi,Indonesia" target="_blank" rel="noopener" class="cit-link" data-i18n-aria-label="contact.location.aria" aria-label="Buka di peta"><span data-i18n="contact.location.cta">Open in maps</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Instagram (opsional) -->
+      <div class="contact-info-tile reveal">
+        <div class="cit-icon"><i class="fa-brands fa-instagram"></i></div>
+        <div class="cit-body">
+          <div class="cit-label">Instagram</div>
+          <div class="cit-value">@radenrifqi_</div>
+          <a href="https://instagram.com/radenrifqi_" target="_blank" rel="noopener" class="cit-link" data-i18n-aria-label="contact.instagram.aria" aria-label="Buka profil Instagram"><span data-i18n="contact.instagram.cta">View profile</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-cta-banner reveal">
+      <div>
+        <h3 data-i18n="contact.cta.title">Prefer a quick chat?</h3>
+        <p data-i18n="contact.cta.desc">I usually reply within 24 hours on WhatsApp or email.</p>
+      </div>
+      <div class="contact-cta-actions">
+        <a href="https://wa.me/6289562199240" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="contact.cta.whatsapp">Message on WhatsApp</span></a>
+        <a href="mailto:ddennn26@gmail.com" class="btn btn-outline"><i class="fa-regular fa-envelope"></i> <span data-i18n="contact.cta.email">Send an email</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#home" class="logo">Ddennnnn<span>.dev</span></a>
+        <p data-i18n="footer.tagline">Full-Stack Developer building clean, fast, and meaningful web experiences.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.quickLinks">Quick Links</h4>
+        <ul>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.others">Others</h4>
+        <ul>
+          <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#education" data-i18n="nav.education">Education</a></li>
+          <li><a href="#certifications" data-i18n="nav.certifications">Certifications</a></li>
+          <li><a href="#testimonials" data-i18n="nav.testimonials">Testimonials</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> <span data-i18n="footer.rights">Rd Muhammad Rifqi Elfaz. All rights reserved.</span></span>
+      <!-- <span>Dibuat dengan <i class="fa-solid fa-heart" style="color:var(--accent-blue);"></i> menggunakan HTML, CSS &amp; JS murni</span> -->
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Kembali ke atas" data-i18n-aria-label="footer.backToTopAria"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+/* ============================================
+   MODE TRANSLATE — EN ⇄ ID (two-way, persisted via localStorage)
+   ============================================ */
+const translations = {
+  /* ---------- NAVBAR ---------- */
+  'nav.home':{id:'Beranda',en:'Home'},
+  'nav.about':{id:'Tentang',en:'About'},
+  'nav.skills':{id:'Keahlian',en:'Skills'},
+  'nav.experience':{id:'Pengalaman',en:'Experience'},
+  'nav.portfolio':{id:'Portofolio',en:'Portfolio'},
+  'nav.services':{id:'Layanan',en:'Services'},
+  'nav.education':{id:'Pendidikan',en:'Education'},
+  'nav.certifications':{id:'Sertifikasi',en:'Certifications'},
+  'nav.testimonials':{id:'Testimoni',en:'Testimonials'},
+  'nav.contact':{id:'Kontak',en:'Contact'},
+  'nav.hireMe':{id:'Hubungi Saya',en:'Hire Me'},
+  'nav.menuAria':{id:'Buka menu navigasi',en:'Open navigation menu'},
+
+  /* ---------- HERO ---------- */
+  'hero.eyebrow':{id:'Terbuka untuk peluang baru',en:'Open to new opportunities'},
+  'hero.greeting':{
+    id:'Halo, saya <span class="gradient-text">Rd Muhammad Rifqi Elfaz</span>',
+    en:'Hello, I\'m <span class="gradient-text">Rd Muhammad Rifqi Elfaz</span>'
+  },
+  'hero.desc':{
+    id:'Full-Stack Developer yang membangun aplikasi web modern, cepat, dan mudah digunakan — dari desain antarmuka hingga arsitektur backend dan REST API.',
+    en:'A Full-Stack Developer building modern, fast, and easy-to-use web applications — from interface design to backend architecture and REST APIs.'
+  },
+  'hero.downloadCV':{id:'Unduh CV',en:'Download CV'},
+  'hero.downloadAria':{id:'Unduh CV',en:'Download CV'},
+  'hero.contactMe':{id:'Hubungi Saya',en:'Contact Me'},
+  'hero.contactAria':{id:'Hubungi saya',en:'Contact me'},
+  'hero.photoAlt':{id:'Foto profil Rd Muhammad Rifqi Elfaz',en:'Profile photo of Rd Muhammad Rifqi Elfaz'},
+  'hero.scroll':{id:'Gulir',en:'Scroll'},
+
+  /* ---------- ABOUT ---------- */
+  'about.eyebrow':{id:'Tentang Saya',en:'About Me'},
+  'about.title':{
+    id:'Mengenal <span class="gradient-text">Saya Lebih Dekat</span>',
+    en:'Getting to Know <span class="gradient-text">Me Better</span>'
+  },
+  'about.desc':{id:'Sedikit cerita tentang perjalanan saya dan cara saya bekerja.',en:'A little story about my journey and how I work.'},
+  'about.photoAlt':{id:'Foto Rd Muhammad Rifqi Elfaz sedang bekerja',en:'Photo of Rd Muhammad Rifqi Elfaz at work'},
+  'about.p1':{
+    id:'Saya adalah Full-Stack Developer dengan pengalaman profesional lebih dari 2 tahun di berbagai perusahaan, ditambah 4 tahun pengalaman sebagai freelancer. Terampil dalam mengembangkan dan memelihara aplikasi web menggunakan Laravel dan CodeIgniter, serta pengelolaan data melalui REST API. Berpengalaman bekerja dengan sistem terpusat yang terhubung ke berbagai unit internal dan pihak eksternal untuk mendukung proses operasional.',
+    en:'I am a Full-Stack Developer with over 2 years of professional experience across various companies, complemented by 4 years of freelance experience. Skilled in developing and maintaining web applications using Laravel and CodeIgniter, along with data management through REST APIs. Experienced in working with centralized systems connected to multiple internal units and external parties to support operational processes.'
+  },
+  'about.p2':{
+    id:'Saya memiliki kemampuan yang kuat dalam pengolahan dan analisis data, membangun fitur monitoring dan pelaporan, serta troubleshooting dan penyempurnaan sistem. Saya memahami alur kerja bisnis dengan baik, mampu bekerja secara mandiri maupun dalam tim, dan terbiasa menyelesaikan pekerjaan secara akurat, tepat waktu, dan penuh tanggung jawab.',
+    en:'I have strong skills in data processing and analysis, building monitoring and reporting features, as well as troubleshooting and system improvements. I have a solid understanding of business workflows, can work both independently and within a team, and am accustomed to completing tasks accurately, on time, and with full responsibility.'
+  },
+  'about.bio.name':{id:'Nama',en:'Name'},
+  'about.bio.location':{id:'Lokasi',en:'Location'},
+  'about.bio.email':{id:'Email',en:'Email'},
+  'about.bio.education':{id:'Pendidikan',en:'Education'},
+  'about.bio.educationVal':{id:'S1 Sistem Informasi',en:'Bachelor of Information Systems'},
+  'about.bio.experience':{id:'Pengalaman',en:'Experience'},
+  'about.bio.experienceVal':{id:'3+ Tahun',en:'3+ Years'},
+  'about.bio.freelance':{id:'Freelance',en:'Freelance'},
+  'about.bio.freelanceVal':{id:'Tersedia',en:'Available'},
+  'about.bio.language':{id:'Bahasa',en:'Language'},
+  'about.bio.status':{id:'Status',en:'Status'},
+  'about.bio.statusVal':{id:'Sedang Bekerja Aktif',en:'Actively Working'},
+  'about.stats.years':{id:'Tahun Pengalaman',en:'Years Experience'},
+  'about.stats.projects':{id:'Proyek',en:'Projects'},
+  'about.stats.clients':{id:'Klien Puas',en:'Happy Clients'},
+  'about.stats.tech':{id:'Teknologi',en:'Technologies'},
+
+  /* ---------- SKILLS ---------- */
+  'skills.eyebrow':{id:'Keahlian',en:'Skills'},
+  'skills.title':{
+    id:'Keahlian &amp; <span class="gradient-text">Teknologi</span>',
+    en:'Skills &amp; <span class="gradient-text">Technologies</span>'
+  },
+  'skills.desc':{id:'Alat dan teknologi yang saya gunakan setiap hari.',en:'Tools and technology that I use every day.'},
+  'skills.cat.frontend':{id:'Frontend',en:'Frontend'},
+  'skills.cat.backend':{id:'Backend',en:'Backend'},
+  'skills.cat.database':{id:'Database',en:'Database'},
+  'skills.cat.tools':{id:'Alat',en:'Tools'},
+  'skills.cat.other':{id:'Lainnya',en:'Other'},
+
+  /* ---------- EXPERIENCE ---------- */
+  'experience.eyebrow':{id:'Perjalanan Karier',en:'Career Journey'},
+  'experience.title':{
+    id:'Pengalaman <span class="gradient-text">Kerja</span>',
+    en:'Work <span class="gradient-text">Experience</span>'
+  },
+  'experience.desc':{id:'Riwayat pengalaman kerja saya di berbagai perusahaan.',en:'My work experience history in various companies.'},
+  'experience.job1.year':{id:'2024 — Sekarang',en:'2024 — Current'},
+  'experience.job1.desc':{
+    id:'Fullstack Developer yang dinamis dengan keahlian terbukti dalam membangun aplikasi web berbasis data yang andal menggunakan Laravel, CodeIgniter, MySQL, dan REST API. Mahir merancang integrasi kompleks, termasuk meluncurkan sistem data terpusat yang menghubungkan mitra main dealer dengan jaringan provinsi yang luas. Memiliki rekam jejak dalam mengembangkan fitur monitoring, pelaporan, dan analisis data penjualan real-time yang berdampak besar bagi bisnis. Selain itu, merancang dan mengoptimalkan API yang aman dan berperforma tinggi untuk aplikasi mobile React Native lintas platform, mendukung tim sales lapangan dan jaringan dealer dengan akses data yang andal kapan saja.',
+    en:'Dynamic Fullstack Developer with proven expertise in building robust, data-driven web applications using Laravel, CodeIgniter, MySQL, and REST APIs. Adept at engineering complex integrations, notably launching a centralized data system that seamlessly connected a main dealer partner with extensive provincial networks. Proven track record in developing high-impact monitoring, reporting, and real-time sales data analysis features that drive business insights. Additionally, designed and optimized secure, high-performance APIs for cross-platform React Native mobile applications, empowering field sales teams and dealer networks with reliable, on-the-go data access.'
+  },
+  'experience.job2.year':{id:'2022 — Sekarang',en:'2022 — Current'},
+  'experience.job2.title':{id:'Freelance',en:'Freelance'},
+  'experience.job2.desc':{
+    id:'Fullstack Developer freelance yang serbabisa, berpengalaman menghadirkan solusi web sesuai kebutuhan klien, mengelola seluruh siklus mulai dari analisis kebutuhan hingga deployment akhir. Mahir merancang dan mengimplementasikan antarmuka responsif yang berpusat pada pengguna menggunakan React, JavaScript, jQuery, dan Bootstrap untuk memastikan pengalaman pengguna yang mulus. Di sisi backend, membangun sistem yang skalabel, basis data relasional, dan REST API yang aman dengan Laravel dan Node.js. Berhasil menerapkan berbagai platform khusus, termasuk sistem manajemen inventaris UKM, platform reservasi online, dan aplikasi e-commerce yang tangguh, selalu menyelaraskan eksekusi teknis dengan tujuan bisnis unik setiap klien.',
+    en:'Versatile freelance Fullstack Developer experienced in delivering tailor-made web solutions, managing the entire lifecycle from initial needs analysis through to final deployment. Expertly designs and implements responsive, user-centric interfaces utilizing React, JavaScript, jQuery, and Bootstrap to ensure seamless UX. On the backend, builds scalable systems, relational databases, and secure RESTful APIs leveraging Laravel and Node.js. Successfully deployed diverse custom platforms, including SME inventory management systems, online reservation platforms, and robust e-commerce applications, consistently aligning technical execution with unique client business goals.'
+  },
+
+  /* ---------- PORTFOLIO ---------- */
+  'portfolio.eyebrow':{id:'Karya Saya',en:'My Work'},
+  'portfolio.title':{
+    id:'Proyek <span class="gradient-text">Unggulan</span>',
+    en:'Featured <span class="gradient-text">Projects</span>'
+  },
+  'portfolio.desc':{id:'Beberapa proyek yang telah saya kerjakan.',en:'Some projects I have worked on.'},
+  'portfolio.p1.alt':{id:'Tampilan proyek Hall Gembira',en:'Screenshot of the Hall Gembira project'},
+  'portfolio.p1.desc':{
+    id:'Sistem manajemen terintegrasi dan dashboard admin untuk mengelola reservasi lapangan bulu tangkis, inventaris pesanan, dan rekapitulasi laporan sewa secara real-time guna meningkatkan efisiensi operasional hall.',
+    en:'Integrated management system and admin dashboard to manage badminton court reservations, order inventory, and rental report recapitulation in real-time to improve hall operational efficiency.'
+  },
+  'portfolio.p2.alt':{id:'Tampilan proyek Aplikasi Donut',en:'Screenshot of the Donut Order application'},
+  'portfolio.p2.desc':{
+    id:'Aplikasi e-commerce dan manajemen pesanan donat yang terintegrasi, dirancang untuk menangani kustomisasi varian produk, pemrosesan transaksi yang aman, dan pemantauan status pesanan secara real-time.',
+    en:'An integrated donut e-commerce and order management application, designed to handle product variant customization, secure transaction processing, and real-time order status monitoring.'
+  },
+  'portfolio.p3.alt':{id:'Tampilan proyek Vastra',en:'Screenshot of the Vastra project'},
+  'portfolio.p3.desc':{
+    id:'Platform e-commerce fashion modern yang memfasilitasi penjualan pakaian, celana, dan aksesori secara online, dilengkapi sistem katalog dinamis, manajemen keranjang belanja, dan proses checkout yang terintegrasi.',
+    en:'A modern fashion e-commerce platform that facilitates the online sale of clothing, trousers, and accessories, complete with a dynamic catalog system, shopping cart management, and an integrated checkout process.'
+  },
+
+  /* ---------- SERVICES ---------- */
+  'services.eyebrow':{id:'Layanan',en:'Services'},
+  'services.title':{
+    id:'Apa yang Saya <span class="gradient-text">Tawarkan</span>',
+    en:'What I <span class="gradient-text">Offer</span>'
+  },
+  'services.desc':{id:'Layanan yang dapat saya bantu untuk kebutuhan proyek Anda.',en:'Services that I can help you with for your project needs.'},
+  'services.s1.title':{id:'Pengembangan Web',en:'Web Development'},
+  'services.s1.desc':{id:'Membangun situs web modern, cepat, dan responsif sesuai kebutuhan bisnis Anda.',en:'Building modern, fast, and responsive websites tailored to your business needs.'},
+  'services.s2.title':{id:'Pengembangan Backend',en:'Backend Development'},
+  'services.s2.desc':{id:'Merancang arsitektur backend yang skalabel, aman, dan mudah dikembangkan.',en:'Designing scalable, secure, and easily extendable backend architectures.'},
+  'services.s3.title':{id:'REST API',en:'REST API'},
+  'services.s3.desc':{id:'Membangun dan mendokumentasikan REST API untuk integrasi aplikasi web dan mobile yang mulus.',en:'Building and documenting REST APIs for seamless web and mobile application integration.'},
+  'services.s4.title':{id:'Desain Basis Data',en:'Database Design'},
+  'services.s4.desc':{id:'Merancang struktur basis data yang efisien sesuai skala dan kebutuhan aplikasi Anda.',en:'Designing efficient database structures tailored to the scale and needs of your application.'},
+  'services.s5.title':{id:'Perbaikan Bug',en:'Bug Fixing'},
+  'services.s5.desc':{id:'Mengidentifikasi dan menyelesaikan bug dengan cepat tanpa mengganggu sistem yang berjalan.',en:'Quickly identifying and resolving bugs without disrupting your running system.'},
+  'services.s6.title':{id:'Maintenance',en:'Maintenance'},
+  'services.s6.desc':{id:'Layanan pemeliharaan rutin untuk menjaga performa dan keamanan aplikasi Anda secara berkelanjutan.',en:'Regular maintenance services to ensure the continuous performance and security of your application.'},
+
+  /* ---------- EDUCATION ---------- */
+  'education.eyebrow':{id:'Riwayat',en:'History'},
+  'education.title':{
+    id:'Latar Belakang <span class="gradient-text">Pendidikan</span>',
+    en:'Education <span class="gradient-text">Background</span>'
+  },
+  'education.desc':{id:'Latar belakang pendidikan formal saya.',en:'My formal educational background.'},
+  'education.e1.title':{id:'S1 Sistem Informasi',en:'Bachelor of Information Systems'},
+  'education.e1.desc':{id:'Fokus pada rekayasa perangkat lunak dan pengembangan sistem berbasis web, IPK 3.86/4.0.',en:'Focused on software engineering and web-based system development, GPA 3.86/4.0.'},
+
+  /* ---------- CONTACT (new section) ---------- */
+  'contact.eyebrow':{id:'Kontak',en:'Contact'},
+  'contact.title':{
+    id:'Mari <span class="gradient-text">Bekerja Sama</span>',
+    en:'Let\'s Work <span class="gradient-text">Together</span>'
+  },
+  'contact.desc':{
+    id:'Punya proyek atau ide? Jangan ragu untuk menghubungi saya melalui salah satu kanal di bawah ini.',
+    en:'Have a project or idea? Feel free to reach out through any of the channels below.'
+  },
+  'contact.email.label':{id:'Email',en:'Email'},
+  'contact.email.aria':{id:'Kirim email',en:'Send an email'},
+  'contact.email.cta':{id:'Kirim email',en:'Send an email'},
+  'contact.whatsapp.label':{id:'WhatsApp',en:'WhatsApp'},
+  'contact.whatsapp.aria':{id:'Chat via WhatsApp',en:'Chat via WhatsApp'},
+  'contact.whatsapp.cta':{id:'Chat sekarang',en:'Chat now'},
+  'contact.github.aria':{id:'Buka profil GitHub',en:'Open GitHub profile'},
+  'contact.github.cta':{id:'Lihat profil',en:'View profile'},
+  'contact.linkedin.aria':{id:'Buka profil LinkedIn',en:'Open LinkedIn profile'},
+  'contact.linkedin.cta':{id:'Lihat profil',en:'View profile'},
+  'contact.location.label':{id:'Lokasi',en:'Location'},
+  'contact.location.aria':{id:'Buka di peta',en:'Open in maps'},
+  'contact.location.cta':{id:'Buka peta',en:'Open in maps'},
+  'contact.instagram.aria':{id:'Buka profil Instagram',en:'Open Instagram profile'},
+  'contact.instagram.cta':{id:'Lihat profil',en:'View profile'},
+  'contact.cta.title':{id:'Ingin ngobrol cepat?',en:'Prefer a quick chat?'},
+  'contact.cta.desc':{id:'Biasanya saya membalas dalam 24 jam via WhatsApp atau email.',en:'I usually reply within 24 hours on WhatsApp or email.'},
+  'contact.cta.whatsapp':{id:'Kirim pesan via WhatsApp',en:'Message on WhatsApp'},
+  'contact.cta.email':{id:'Kirim email',en:'Send an email'},
+
+  /* ---------- FOOTER ---------- */
+  'footer.tagline':{id:'Full-Stack Developer yang membangun pengalaman web yang bersih, cepat, dan bermakna.',en:'Full-Stack Developer building clean, fast, and meaningful web experiences.'},
+  'footer.quickLinks':{id:'Tautan Cepat',en:'Quick Links'},
+  'footer.others':{id:'Lainnya',en:'Others'},
+  'footer.rights':{id:'Rd Muhammad Rifqi Elfaz. Seluruh hak cipta dilindungi.',en:'Rd Muhammad Rifqi Elfaz. All rights reserved.'},
+  'footer.backToTopAria':{id:'Kembali ke atas',en:'Back to top'}
+};
+
+const LANG_STORAGE_KEY = 'site-lang';
+let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'id';
+
+function applyLanguage(lang){
+  currentLang = (lang === 'en') ? 'en' : 'id';
+  document.documentElement.lang = currentLang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(translations[key]) el.textContent = translations[key][currentLang];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if(translations[key]) el.innerHTML = translations[key][currentLang];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if(translations[key]) el.setAttribute('placeholder', translations[key][currentLang]);
+  });
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria-label');
+    if(translations[key]) el.setAttribute('aria-label', translations[key][currentLang]);
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+    const key = el.getAttribute('data-i18n-alt');
+    if(translations[key]) el.setAttribute('alt', translations[key][currentLang]);
+  });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    if(translations[key]) el.setAttribute('title', translations[key][currentLang]);
+  });
+
+  // Update lang toggle button UI
+  const flagEl = document.getElementById('langFlag');
+  const codeIdEl = document.getElementById('langCodeId');
+  const codeEnEl = document.getElementById('langCodeEn');
+  if(flagEl && codeIdEl && codeEnEl){
+    flagEl.textContent = currentLang === 'id' ? '🇮🇩' : '🇺🇸';
+    codeIdEl.classList.toggle('inactive', currentLang !== 'id');
+    codeEnEl.classList.toggle('inactive', currentLang !== 'en');
+  }
+
+  // Keep typing-effect roles in sync with the active language
+  if(typeof rolesData !== 'undefined'){
+    roles = rolesData[currentLang] || rolesData.id;
+    roleIndex = 0; charIndex = 0; deleting = false;
+  }
+
+  localStorage.setItem(LANG_STORAGE_KEY, currentLang);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const langToggle = document.getElementById('langToggle');
+  if(langToggle){
+    langToggle.addEventListener('click', () => {
+      applyLanguage(currentLang === 'id' ? 'en' : 'id');
+    });
+  }
+  applyLanguage(currentLang);
+});
+
+/* ============================================
+   NAVBAR: sticky + active link + mobile menu
+   ============================================ */
+const navbar = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+const menuBackdrop = document.getElementById('menuBackdrop');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+  toggleBackToTop();
+  updateActiveNav();
+});
+
+function toggleMenu(open){
+  navMenu.classList.toggle('active', open);
+  menuBackdrop.classList.toggle('active', open);
+  hamburger.classList.toggle('active', open);
+  hamburger.setAttribute('aria-expanded', open);
+}
+hamburger.addEventListener('click', () => toggleMenu(!navMenu.classList.contains('active')));
+menuBackdrop.addEventListener('click', () => toggleMenu(false));
+navLinks.forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+function updateActiveNav(){
+  const sections = document.querySelectorAll('section[id]');
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 140;
+    if(window.scrollY >= top) current = sec.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+}
+
+/* ============================================
+   TYPING EFFECT (Job Title)
+   ============================================ */
+const rolesData = {
+  id: ['Full-Stack Developer','Backend Engineer','React Developer','REST API Specialist'],
+  en: ['Full-Stack Developer','Backend Engineer','React Developer','REST API Specialist']
+};
+let roles = rolesData[currentLang] || rolesData.id;
+const typedEl = document.getElementById('typedRole');
+let roleIndex = 0, charIndex = 0, deleting = false;
+
+function typeLoop(){
+  const currentRole = roles[roleIndex % roles.length];
+  if(!deleting){
+    typedEl.textContent = currentRole.slice(0, ++charIndex);
+    if(charIndex === currentRole.length){ deleting = true; setTimeout(typeLoop, 1500); return; }
+  } else {
+    typedEl.textContent = currentRole.slice(0, --charIndex);
+    if(charIndex === 0){ deleting = false; roleIndex = (roleIndex + 1) % roles.length; }
+  }
+  setTimeout(typeLoop, deleting ? 45 : 90);
+}
+typeLoop();
+
+/* ============================================
+   SCROLL REVEAL (IntersectionObserver)
+   ============================================ */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ============================================
+   SKILL BARS ANIMATION
+   ============================================ */
+const skillBars = document.querySelectorAll('.skill-bar-fill');
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.width = entry.target.dataset.width + '%';
+      skillObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+skillBars.forEach(bar => skillObserver.observe(bar));
+
+/* ============================================
+   COUNTER ANIMATION (Stats)
+   ============================================ */
+const counters = document.querySelectorAll('.stat-num');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+function animateCounter(el){
+  const target = parseInt(el.dataset.count, 10);
+  const duration = 1500;
+  const startTime = performance.now();
+  function step(now){
+    const progress = Math.min((now - startTime) / duration, 1);
+    el.textContent = Math.floor(progress * target);
+    if(progress < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+
+/* ============================================
+   TESTIMONIAL SLIDER
+   Catatan: section Testimonials saat ini di-comment di HTML, jadi
+   elemen-elemen di bawah ini belum ada di DOM. Guard ini mencegah
+   error di console; seluruh logika tetap dipertahankan agar slider
+   langsung berfungsi begitu section testimonials diaktifkan lagi.
+   ============================================ */
+const track = document.getElementById('testimonialItems');
+const slides = document.querySelectorAll('.testimonial-slide');
+const dotsWrap = document.getElementById('sliderDots');
+const nextSlideBtn = document.getElementById('nextSlide');
+const prevSlideBtn = document.getElementById('prevSlide');
+const testimonialSliderEl = document.querySelector('.testimonial-slider');
+let slideIndex = 0;
+
+if(track && dotsWrap && nextSlideBtn && prevSlideBtn && testimonialSliderEl && slides.length){
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Ke testimoni ' + (i + 1));
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = document.querySelectorAll('.slider-dot');
+
+  function goToSlide(i){
+    slideIndex = (i + slides.length) % slides.length;
+    track.style.transform = `translateX(-${slideIndex * 100}%)`;
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === slideIndex));
+  }
+  nextSlideBtn.addEventListener('click', () => goToSlide(slideIndex + 1));
+  prevSlideBtn.addEventListener('click', () => goToSlide(slideIndex - 1));
+  let autoSlide = setInterval(() => goToSlide(slideIndex + 1), 6000);
+  testimonialSliderEl.addEventListener('mouseenter', () => clearInterval(autoSlide));
+  testimonialSliderEl.addEventListener('mouseleave', () => { autoSlide = setInterval(() => goToSlide(slideIndex + 1), 6000); });
+}
+
+/* ============================================
+   BACK TO TOP
+   ============================================ */
+const backToTop = document.getElementById('backToTop');
+function toggleBackToTop(){ backToTop.classList.toggle('visible', window.scrollY > 500); }
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ============================================
+   CONTACT FORM (demo — tanpa backend)
+   Catatan: elemen form ini saat ini di-comment di HTML (lihat section
+   CONTACT lama) agar tidak bisa di-submit. Guard di bawah mencegah
+   error di console selama form belum diaktifkan kembali; logikanya
+   tetap dipertahankan agar bisa langsung dipakai lagi nanti.
+   ============================================ */
+const contactForm = document.getElementById('contactForm');
+const formMsg = document.getElementById('formMsg');
+if(contactForm && formMsg){
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formMsg.textContent = 'Pesan berhasil dikirim! Terima kasih sudah menghubungi.';
+    contactForm.reset();
+    setTimeout(() => formMsg.textContent = '', 4000);
+  });
+}
+
+/* ============================================
+   FOOTER YEAR
+   ============================================ */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
