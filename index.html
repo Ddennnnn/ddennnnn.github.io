@@ -1014,6 +1014,136 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   z-index:999;
 }
 .menu-backdrop.active{opacity:1;visibility:visible;}
+
+
+/* ============================================
+   PDF EXPORT
+   ============================================ */
+.pdf-export-loading{
+  pointer-events:none;
+  opacity:.72;
+}
+
+.pdf-export-root{
+  width:794px;
+  background:var(--bg-primary);
+  color:var(--text-primary);
+  overflow:hidden;
+}
+
+.pdf-export-root .navbar,
+.pdf-export-root .menu-backdrop,
+.pdf-export-root .back-to-top,
+.pdf-export-root .scroll-indicator,
+.pdf-export-root .hero-actions,
+.pdf-export-root .lang-toggle,
+.pdf-export-root .hamburger,
+.pdf-export-root .slider-arrows,
+.pdf-export-root .slider-dots{
+  display:none !important;
+}
+
+.pdf-export-root .hero{
+  min-height:auto !important;
+  padding:56px 0 44px !important;
+}
+
+.pdf-export-root .section{
+  padding:52px 0 !important;
+}
+
+.pdf-export-root .container{
+  max-width:746px !important;
+  padding:0 24px !important;
+}
+
+.pdf-export-root .hero-inner,
+.pdf-export-root .about-grid,
+.pdf-export-root .contact-grid{
+  gap:30px !important;
+}
+
+.pdf-export-root .hero-photo-wrap{
+  width:230px !important;
+  height:230px !important;
+}
+
+.pdf-export-root .section-header{
+  margin-bottom:34px !important;
+}
+
+.pdf-export-root .reveal{
+  opacity:1 !important;
+  transform:none !important;
+}
+
+.pdf-export-root .skill-bar-fill{
+  transition:none !important;
+}
+
+.pdf-export-root .project-card,
+.pdf-export-root .skill-category,
+.pdf-export-root .timeline-item,
+.pdf-export-root .timeline-card,
+.pdf-export-root .edu-card,
+.pdf-export-root .service-card,
+.pdf-export-root .cert-card,
+.pdf-export-root .contact-info-tile,
+.pdf-export-root .contact-cta-banner,
+.pdf-export-root .bio-card,
+.pdf-export-root .stat-card{
+  break-inside:avoid;
+  page-break-inside:avoid;
+}
+
+.pdf-export-root section{
+  break-inside:auto;
+  page-break-inside:auto;
+}
+
+.pdf-export-root .portfolio-grid,
+.pdf-export-root .skills-grid,
+.pdf-export-root .services-grid,
+.pdf-export-root .cert-grid{
+  gap:16px !important;
+}
+
+.pdf-export-root .project-thumb{
+  height:160px !important;
+}
+
+.pdf-export-root .footer{
+  padding:36px 0 20px !important;
+}
+
+.pdf-export-root .footer-top{
+  margin-bottom:24px !important;
+}
+
+.pdf-export-root *{
+  animation:none !important;
+  transition:none !important;
+}
+
+@media print{
+  .navbar,
+  .menu-backdrop,
+  .back-to-top,
+  .scroll-indicator,
+  .hero-actions,
+  .lang-toggle,
+  .hamburger,
+  .slider-arrows,
+  .slider-dots{
+    display:none !important;
+  }
+
+  .reveal{
+    opacity:1 !important;
+    transform:none !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1065,6 +1195,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       <p class="hero-desc" data-i18n="hero.desc">Full-Stack Developer yang membangun aplikasi web modern, cepat, dan mudah digunakan — dari desain antarmuka hingga arsitektur backend dan REST API.</p>
       <div class="hero-actions">
         <a href="CV_Rd Muhammad Rifqi Elfaz.pdf" class="btn btn-primary" download aria-label="Unduh CV" data-i18n-aria-label="hero.downloadAria"><i class="fa-solid fa-download"></i> <span data-i18n="hero.downloadCV">Download CV</span></a>
+        <button type="button" class="btn btn-outline" id="exportPortfolioPdf" aria-label="Unduh portfolio sebagai PDF" data-i18n-aria-label="hero.exportPdfAria"><i class="fa-regular fa-file-pdf"></i> <span data-i18n="hero.exportPdf">Export PDF</span></button>
         <a href="#contact" class="btn btn-outline" aria-label="Hubungi saya" data-i18n-aria-label="hero.contactAria"><i class="fa-regular fa-paper-plane"></i> <span data-i18n="hero.contactMe">Contact Me</span></a>
       </div>
       <div class="hero-socials">
@@ -1426,6 +1557,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 
 <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas" data-i18n-aria-label="footer.backToTopAria"><i class="fa-solid fa-arrow-up"></i></button>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <script>
 const translations = {
   /* ---------- NAVBAR ---------- */
@@ -1454,6 +1587,9 @@ const translations = {
   },
   'hero.downloadCV':{id:'Unduh CV',en:'Download CV'},
   'hero.downloadAria':{id:'Unduh CV',en:'Download CV'},
+  'hero.exportPdf':{id:'Export PDF',en:'Export PDF'},
+  'hero.exportPdfAria':{id:'Unduh portfolio sebagai PDF',en:'Download portfolio as PDF'},
+  'hero.exportingPdf':{id:'Membuat PDF...',en:'Creating PDF...'},
   'hero.contactMe':{id:'Hubungi Saya',en:'Contact Me'},
   'hero.contactAria':{id:'Hubungi saya',en:'Contact me'},
   'hero.photoAlt':{id:'Foto profil Rd Muhammad Rifqi Elfaz',en:'Profile photo of Rd Muhammad Rifqi Elfaz'},
@@ -1835,6 +1971,162 @@ if(contactForm && formMsg){
     contactForm.reset();
     setTimeout(() => formMsg.textContent = '', 4000);
   });
+}
+
+
+/* ============================================
+   EXPORT PORTFOLIO TO PDF
+   ============================================ */
+const exportPortfolioPdfBtn = document.getElementById('exportPortfolioPdf');
+
+function buildPdfPortfolio(){
+  const pdfRoot = document.createElement('div');
+  pdfRoot.className = 'pdf-export-root';
+
+  const sectionIds = [
+    'home',
+    'about',
+    'skills',
+    'experience',
+    'portfolio',
+    'services',
+    'education',
+    'certifications',
+    'testimonials',
+    'contact'
+  ];
+
+  sectionIds.forEach(id => {
+    const section = document.getElementById(id);
+    if(section) pdfRoot.appendChild(section.cloneNode(true));
+  });
+
+  const footer = document.querySelector('.footer');
+  if(footer) pdfRoot.appendChild(footer.cloneNode(true));
+
+  // Pastikan elemen yang biasanya muncul via animasi terlihat di PDF.
+  pdfRoot.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+
+  // Isi skill bar sesuai data-width, tanpa menunggu IntersectionObserver.
+  pdfRoot.querySelectorAll('.skill-bar-fill').forEach(bar => {
+    bar.style.width = (bar.dataset.width || '0') + '%';
+  });
+
+  // Counter harus menampilkan angka akhir, bukan angka saat animasi berjalan.
+  pdfRoot.querySelectorAll('.stat-num[data-count]').forEach(el => {
+    el.textContent = el.dataset.count;
+  });
+
+  // Hapus elemen interaktif yang tidak berguna pada dokumen PDF.
+  pdfRoot.querySelectorAll(
+    '#exportPortfolioPdf, .hero-actions, .slider-arrows, .slider-dots, .back-to-top, .scroll-indicator'
+  ).forEach(el => el.remove());
+
+  return pdfRoot;
+}
+
+async function exportPortfolioToPdf(){
+  if(!exportPortfolioPdfBtn) return;
+
+  const label = exportPortfolioPdfBtn.querySelector('span');
+  const originalText = label ? label.textContent : '';
+  const originalIcon = exportPortfolioPdfBtn.querySelector('i');
+  const originalIconClass = originalIcon ? originalIcon.className : '';
+
+  exportPortfolioPdfBtn.disabled = true;
+  exportPortfolioPdfBtn.classList.add('pdf-export-loading');
+  if(label && translations['hero.exportingPdf']){
+    label.textContent = translations['hero.exportingPdf'][currentLang];
+  }
+  if(originalIcon) originalIcon.className = 'fa-solid fa-spinner fa-spin';
+
+  let pdfRoot = null;
+
+  try{
+    // Fallback bila CDN html2pdf gagal dimuat.
+    if(typeof html2pdf === 'undefined'){
+      window.print();
+      return;
+    }
+
+    pdfRoot = buildPdfPortfolio();
+    pdfRoot.style.position = 'fixed';
+    pdfRoot.style.left = '-100000px';
+    pdfRoot.style.top = '0';
+    pdfRoot.style.zIndex = '-1';
+    document.body.appendChild(pdfRoot);
+
+    // Tunggu font dan gambar agar hasil canvas tidak kosong/bergeser.
+    if(document.fonts && document.fonts.ready){
+      await document.fonts.ready;
+    }
+
+    const images = Array.from(pdfRoot.querySelectorAll('img'));
+    await Promise.all(images.map(img => {
+      if(img.complete) return Promise.resolve();
+      return new Promise(resolve => {
+        img.addEventListener('load', resolve, { once:true });
+        img.addEventListener('error', resolve, { once:true });
+      });
+    }));
+
+    const fileName = currentLang === 'en'
+      ? 'Portfolio_Rd_Muhammad_Rifqi_Elfaz_EN.pdf'
+      : 'Portfolio_Rd_Muhammad_Rifqi_Elfaz_ID.pdf';
+
+    const options = {
+      margin: [6, 6, 6, 6],
+      filename: fileName,
+      image: { type: 'jpeg', quality: 0.96 },
+      html2canvas: {
+        scale: 1.65,
+        useCORS: true,
+        allowTaint: false,
+        logging: false,
+        backgroundColor: '#0a0e17',
+        scrollX: 0,
+        scrollY: 0,
+        windowWidth: 794
+      },
+      jsPDF: {
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'portrait',
+        compress: true
+      },
+      pagebreak: {
+        mode: ['css', 'legacy'],
+        avoid: [
+          '.project-card',
+          '.skill-category',
+          '.timeline-item',
+          '.edu-card',
+          '.service-card',
+          '.contact-info-tile',
+          '.bio-card',
+          '.stat-card'
+        ]
+      },
+      enableLinks: true
+    };
+
+    await html2pdf().set(options).from(pdfRoot).save();
+  } catch(error){
+    console.error('Gagal membuat PDF portfolio:', error);
+    alert(currentLang === 'en'
+      ? 'PDF export failed. Please try again or use your browser Print > Save as PDF.'
+      : 'Export PDF gagal. Silakan coba lagi atau gunakan Print browser > Save as PDF.');
+  } finally {
+    if(pdfRoot && pdfRoot.parentNode) pdfRoot.remove();
+    exportPortfolioPdfBtn.disabled = false;
+    exportPortfolioPdfBtn.classList.remove('pdf-export-loading');
+    if(label) label.textContent = originalText;
+    if(originalIcon) originalIcon.className = originalIconClass;
+  }
+}
+
+if(exportPortfolioPdfBtn){
+  exportPortfolioPdfBtn.addEventListener('click', exportPortfolioToPdf);
 }
 
 /* ============================================
