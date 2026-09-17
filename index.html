@@ -30,6 +30,10 @@
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+<!-- PDF export: section-by-section capture avoids Chrome's maximum canvas height -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
 :root{
   --bg-primary:#0a0e17;
@@ -67,6 +71,67 @@ a{text-decoration:none;color:inherit;}
 ul{list-style:none;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}
 :focus-visible{outline:2px solid var(--accent-blue);outline-offset:3px;}
+
+/* PDF export state */
+.pdf-export-btn.is-loading{pointer-events:none;opacity:.72;}
+.pdf-export-btn .pdf-spinner{display:none;}
+.pdf-export-btn.is-loading .pdf-spinner{display:inline-block;animation:pdfSpin .8s linear infinite;}
+.pdf-export-btn.is-loading .pdf-icon{display:none;}
+@keyframes pdfSpin{to{transform:rotate(360deg);}}
+
+.pdf-export-overlay{
+  position:fixed;
+  inset:0;
+  z-index:2147483647;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:14px;
+  color:#fff;
+  background:rgba(10,14,23,.94);
+  text-align:center;
+  padding:24px;
+}
+.pdf-export-overlay i{font-size:34px;color:var(--accent-blue);animation:pdfSpin .8s linear infinite;}
+.pdf-export-overlay strong{font-family:var(--font-display);font-size:18px;}
+.pdf-export-overlay span{color:var(--text-muted);font-size:14px;}
+
+body.pdf-exporting{scroll-behavior:auto!important;}
+body.pdf-exporting *,body.pdf-exporting *::before,body.pdf-exporting *::after{
+  animation:none!important;
+  transition:none!important;
+  caret-color:transparent!important;
+}
+body.pdf-exporting .reveal{opacity:1!important;transform:none!important;}
+body.pdf-exporting .skill-bar-fill{transition:none!important;}
+body.pdf-exporting .navbar,
+body.pdf-exporting .menu-backdrop,
+body.pdf-exporting .scroll-indicator,
+body.pdf-exporting .back-to-top,
+body.pdf-exporting .hero-actions,
+body.pdf-exporting .contact-cta-actions{display:none!important;}
+
+@media print{
+  @page{size:A4;margin:10mm;}
+  html,body{background:#fff!important;color:#111827!important;overflow:visible!important;}
+  body{-webkit-print-color-adjust:economy!important;print-color-adjust:economy!important;}
+  .navbar,.menu-backdrop,.scroll-indicator,.back-to-top,.hero-actions,.contact-cta-actions{display:none!important;}
+  .reveal{opacity:1!important;transform:none!important;}
+  .skill-bar-fill{width:var(--print-skill-width,100%)!important;}
+  .section,.hero,.footer{background:#fff!important;color:#111827!important;box-shadow:none!important;}
+  .section{padding:42px 0!important;}
+  .hero{min-height:auto!important;padding:50px 0!important;}
+  .section-header{margin-bottom:28px!important;}
+  p,.section-desc,.about-text p,.timeline-desc,.project-desc,.service-card p,.footer p,
+  .contact-info-tile .contact-value,.contact-info-tile .contact-label{color:#374151!important;}
+  .skill-category,.timeline-content,.project-card,.service-card,.edu-card,.bio-card,
+  .contact-info-tile,.contact-cta-banner{background:#fff!important;color:#111827!important;border:1px solid #d1d5db!important;box-shadow:none!important;}
+  .gradient-text{-webkit-text-fill-color:#315fd8!important;color:#315fd8!important;background:none!important;}
+  .skill-category,.timeline-item,.project-card,.service-card,.edu-card,.bio-card,.contact-info-tile,
+  .contact-cta-banner{break-inside:avoid;page-break-inside:avoid;}
+  a{color:inherit!important;}
+}
 
 .container{
   max-width:1200px;
@@ -1014,136 +1079,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   z-index:999;
 }
 .menu-backdrop.active{opacity:1;visibility:visible;}
-
-
-/* ============================================
-   PDF EXPORT
-   ============================================ */
-.pdf-export-loading{
-  pointer-events:none;
-  opacity:.72;
-}
-
-.pdf-export-root{
-  width:794px;
-  background:var(--bg-primary);
-  color:var(--text-primary);
-  overflow:hidden;
-}
-
-.pdf-export-root .navbar,
-.pdf-export-root .menu-backdrop,
-.pdf-export-root .back-to-top,
-.pdf-export-root .scroll-indicator,
-.pdf-export-root .hero-actions,
-.pdf-export-root .lang-toggle,
-.pdf-export-root .hamburger,
-.pdf-export-root .slider-arrows,
-.pdf-export-root .slider-dots{
-  display:none !important;
-}
-
-.pdf-export-root .hero{
-  min-height:auto !important;
-  padding:56px 0 44px !important;
-}
-
-.pdf-export-root .section{
-  padding:52px 0 !important;
-}
-
-.pdf-export-root .container{
-  max-width:746px !important;
-  padding:0 24px !important;
-}
-
-.pdf-export-root .hero-inner,
-.pdf-export-root .about-grid,
-.pdf-export-root .contact-grid{
-  gap:30px !important;
-}
-
-.pdf-export-root .hero-photo-wrap{
-  width:230px !important;
-  height:230px !important;
-}
-
-.pdf-export-root .section-header{
-  margin-bottom:34px !important;
-}
-
-.pdf-export-root .reveal{
-  opacity:1 !important;
-  transform:none !important;
-}
-
-.pdf-export-root .skill-bar-fill{
-  transition:none !important;
-}
-
-.pdf-export-root .project-card,
-.pdf-export-root .skill-category,
-.pdf-export-root .timeline-item,
-.pdf-export-root .timeline-card,
-.pdf-export-root .edu-card,
-.pdf-export-root .service-card,
-.pdf-export-root .cert-card,
-.pdf-export-root .contact-info-tile,
-.pdf-export-root .contact-cta-banner,
-.pdf-export-root .bio-card,
-.pdf-export-root .stat-card{
-  break-inside:avoid;
-  page-break-inside:avoid;
-}
-
-.pdf-export-root section{
-  break-inside:auto;
-  page-break-inside:auto;
-}
-
-.pdf-export-root .portfolio-grid,
-.pdf-export-root .skills-grid,
-.pdf-export-root .services-grid,
-.pdf-export-root .cert-grid{
-  gap:16px !important;
-}
-
-.pdf-export-root .project-thumb{
-  height:160px !important;
-}
-
-.pdf-export-root .footer{
-  padding:36px 0 20px !important;
-}
-
-.pdf-export-root .footer-top{
-  margin-bottom:24px !important;
-}
-
-.pdf-export-root *{
-  animation:none !important;
-  transition:none !important;
-}
-
-@media print{
-  .navbar,
-  .menu-backdrop,
-  .back-to-top,
-  .scroll-indicator,
-  .hero-actions,
-  .lang-toggle,
-  .hamburger,
-  .slider-arrows,
-  .slider-dots{
-    display:none !important;
-  }
-
-  .reveal{
-    opacity:1 !important;
-    transform:none !important;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -1195,8 +1130,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       <p class="hero-desc" data-i18n="hero.desc">Full-Stack Developer yang membangun aplikasi web modern, cepat, dan mudah digunakan — dari desain antarmuka hingga arsitektur backend dan REST API.</p>
       <div class="hero-actions">
         <a href="CV_Rd Muhammad Rifqi Elfaz.pdf" class="btn btn-primary" download aria-label="Unduh CV" data-i18n-aria-label="hero.downloadAria"><i class="fa-solid fa-download"></i> <span data-i18n="hero.downloadCV">Download CV</span></a>
-        <button type="button" class="btn btn-outline" id="exportPortfolioPdf" aria-label="Unduh portfolio sebagai PDF" data-i18n-aria-label="hero.exportPdfAria"><i class="fa-regular fa-file-pdf"></i> <span data-i18n="hero.exportPdf">Export PDF</span></button>
         <a href="#contact" class="btn btn-outline" aria-label="Hubungi saya" data-i18n-aria-label="hero.contactAria"><i class="fa-regular fa-paper-plane"></i> <span data-i18n="hero.contactMe">Contact Me</span></a>
+        <button type="button" class="btn btn-outline pdf-export-btn" id="exportPortfolioPdf" aria-label="Ekspor portofolio ke PDF" data-i18n-aria-label="hero.exportPdfAria">
+          <i class="fa-solid fa-file-pdf pdf-icon"></i>
+          <i class="fa-solid fa-spinner pdf-spinner" aria-hidden="true"></i>
+          <span data-i18n="hero.exportPdf">Export PDF</span>
+        </button>
       </div>
       <div class="hero-socials">
         <a href="https://github.com/Ddennnnn" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
@@ -1557,8 +1496,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 
 <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas" data-i18n-aria-label="footer.backToTopAria"><i class="fa-solid fa-arrow-up"></i></button>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
 <script>
 const translations = {
   /* ---------- NAVBAR ---------- */
@@ -1587,11 +1524,10 @@ const translations = {
   },
   'hero.downloadCV':{id:'Unduh CV',en:'Download CV'},
   'hero.downloadAria':{id:'Unduh CV',en:'Download CV'},
-  'hero.exportPdf':{id:'Export PDF',en:'Export PDF'},
-  'hero.exportPdfAria':{id:'Unduh portfolio sebagai PDF',en:'Download portfolio as PDF'},
-  'hero.exportingPdf':{id:'Membuat PDF...',en:'Creating PDF...'},
   'hero.contactMe':{id:'Hubungi Saya',en:'Contact Me'},
   'hero.contactAria':{id:'Hubungi saya',en:'Contact me'},
+  'hero.exportPdf':{id:'Ekspor PDF',en:'Export PDF'},
+  'hero.exportPdfAria':{id:'Ekspor portofolio ke PDF',en:'Export portfolio to PDF'},
   'hero.photoAlt':{id:'Foto profil Rd Muhammad Rifqi Elfaz',en:'Profile photo of Rd Muhammad Rifqi Elfaz'},
   'hero.scroll':{id:'Gulir',en:'Scroll'},
 
@@ -1973,161 +1909,184 @@ if(contactForm && formMsg){
   });
 }
 
-
 /* ============================================
-   EXPORT PORTFOLIO TO PDF
+   PDF EXPORT
+   Capture each section separately so a long portfolio never exceeds
+   the browser's maximum canvas dimensions (a common cause of blank PDFs).
    ============================================ */
-const exportPortfolioPdfBtn = document.getElementById('exportPortfolioPdf');
+const exportPdfBtn = document.getElementById('exportPortfolioPdf');
 
-function buildPdfPortfolio(){
-  const pdfRoot = document.createElement('div');
-  pdfRoot.className = 'pdf-export-root';
+function nextPaint(){
+  return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+}
 
-  const sectionIds = [
-    'home',
-    'about',
-    'skills',
-    'experience',
-    'portfolio',
-    'services',
-    'education',
-    'certifications',
-    'testimonials',
-    'contact'
-  ];
+function waitForPortfolioImages(){
+  const pending = Array.from(document.images).filter(img => !img.complete).map(img =>
+    new Promise(resolve => {
+      img.addEventListener('load', resolve, { once:true });
+      img.addEventListener('error', resolve, { once:true });
+      setTimeout(resolve, 5000);
+    })
+  );
+  return Promise.all(pending);
+}
 
-  sectionIds.forEach(id => {
-    const section = document.getElementById(id);
-    if(section) pdfRoot.appendChild(section.cloneNode(true));
+function createPdfOverlay(){
+  const overlay = document.createElement('div');
+  overlay.className = 'pdf-export-overlay';
+  overlay.innerHTML = '<i class="fa-solid fa-spinner" aria-hidden="true"></i>' +
+    '<strong>' + (currentLang === 'en' ? 'Creating your portfolio PDF...' : 'Membuat PDF portofolio...') + '</strong>' +
+    '<span id="pdfExportProgress">0%</span>';
+  document.body.appendChild(overlay);
+  return overlay;
+}
+
+function preparePortfolioForPdf(){
+  document.body.classList.add('pdf-exporting');
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  document.querySelectorAll('.skill-bar-fill').forEach(el => {
+    el.dataset.previousInlineWidth = el.style.width || '';
+    el.style.width = (el.dataset.width || 100) + '%';
   });
-
-  const footer = document.querySelector('.footer');
-  if(footer) pdfRoot.appendChild(footer.cloneNode(true));
-
-  // Pastikan elemen yang biasanya muncul via animasi terlihat di PDF.
-  pdfRoot.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-
-  // Isi skill bar sesuai data-width, tanpa menunggu IntersectionObserver.
-  pdfRoot.querySelectorAll('.skill-bar-fill').forEach(bar => {
-    bar.style.width = (bar.dataset.width || '0') + '%';
+  document.querySelectorAll('.stat-num').forEach(el => {
+    el.dataset.previousText = el.textContent;
+    el.textContent = el.dataset.count || el.textContent;
   });
+}
 
-  // Counter harus menampilkan angka akhir, bukan angka saat animasi berjalan.
-  pdfRoot.querySelectorAll('.stat-num[data-count]').forEach(el => {
-    el.textContent = el.dataset.count;
+function restorePortfolioAfterPdf(scrollY){
+  document.body.classList.remove('pdf-exporting');
+  document.querySelectorAll('.skill-bar-fill').forEach(el => {
+    el.style.width = el.dataset.previousInlineWidth || '';
+    delete el.dataset.previousInlineWidth;
   });
+  document.querySelectorAll('.stat-num').forEach(el => {
+    if(Object.prototype.hasOwnProperty.call(el.dataset, 'previousText')){
+      el.textContent = el.dataset.previousText;
+      delete el.dataset.previousText;
+    }
+  });
+  window.scrollTo({ top:scrollY, left:0, behavior:'auto' });
+}
 
-  // Hapus elemen interaktif yang tidak berguna pada dokumen PDF.
-  pdfRoot.querySelectorAll(
-    '#exportPortfolioPdf, .hero-actions, .slider-arrows, .slider-dots, .back-to-top, .scroll-indicator'
-  ).forEach(el => el.remove());
+function paintPdfPage(pdf){
+  pdf.setFillColor(10, 14, 23);
+  pdf.rect(0, 0, 210, 297, 'F');
+}
 
-  return pdfRoot;
+function addCanvasToPdf(pdf, canvas, state){
+  const margin = 7;
+  const contentWidthMm = 210 - (margin * 2);
+  const contentHeightMm = 297 - (margin * 2);
+  const pixelsPerPage = Math.max(1, Math.floor(canvas.width * contentHeightMm / contentWidthMm));
+
+  for(let sourceY = 0; sourceY < canvas.height; sourceY += pixelsPerPage){
+    const sliceHeight = Math.min(pixelsPerPage, canvas.height - sourceY);
+    const pageCanvas = document.createElement('canvas');
+    pageCanvas.width = canvas.width;
+    pageCanvas.height = sliceHeight;
+    const ctx = pageCanvas.getContext('2d', { alpha:false });
+    ctx.fillStyle = '#0a0e17';
+    ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+    ctx.drawImage(canvas, 0, sourceY, canvas.width, sliceHeight, 0, 0, canvas.width, sliceHeight);
+
+    if(state.hasPage) pdf.addPage();
+    state.hasPage = true;
+    paintPdfPage(pdf);
+
+    const renderedHeightMm = sliceHeight * contentWidthMm / canvas.width;
+    const imageData = pageCanvas.toDataURL('image/jpeg', .92);
+    pdf.addImage(imageData, 'JPEG', margin, margin, contentWidthMm, renderedHeightMm, undefined, 'FAST');
+    pageCanvas.width = 1;
+    pageCanvas.height = 1;
+  }
 }
 
 async function exportPortfolioToPdf(){
-  if(!exportPortfolioPdfBtn) return;
+  if(!exportPdfBtn || exportPdfBtn.classList.contains('is-loading')) return;
 
-  const label = exportPortfolioPdfBtn.querySelector('span');
-  const originalText = label ? label.textContent : '';
-  const originalIcon = exportPortfolioPdfBtn.querySelector('i');
-  const originalIconClass = originalIcon ? originalIcon.className : '';
-
-  exportPortfolioPdfBtn.disabled = true;
-  exportPortfolioPdfBtn.classList.add('pdf-export-loading');
-  if(label && translations['hero.exportingPdf']){
-    label.textContent = translations['hero.exportingPdf'][currentLang];
-  }
-  if(originalIcon) originalIcon.className = 'fa-solid fa-spinner fa-spin';
-
-  let pdfRoot = null;
+  const originalScrollY = window.scrollY;
+  let overlay;
+  exportPdfBtn.classList.add('is-loading');
+  exportPdfBtn.disabled = true;
 
   try{
-    // Fallback bila CDN html2pdf gagal dimuat.
-    if(typeof html2pdf === 'undefined'){
-      window.print();
-      return;
+    if(typeof window.html2canvas !== 'function' || !window.jspdf || !window.jspdf.jsPDF){
+      throw new Error('PDF_LIBRARY_UNAVAILABLE');
     }
 
-    pdfRoot = buildPdfPortfolio();
-    pdfRoot.style.position = 'fixed';
-    pdfRoot.style.left = '-100000px';
-    pdfRoot.style.top = '0';
-    pdfRoot.style.zIndex = '-1';
-    document.body.appendChild(pdfRoot);
+    overlay = createPdfOverlay();
+    preparePortfolioForPdf();
+    await waitForPortfolioImages();
+    if(document.fonts && document.fonts.ready) await document.fonts.ready;
+    await nextPaint();
 
-    // Tunggu font dan gambar agar hasil canvas tidak kosong/bergeser.
-    if(document.fonts && document.fonts.ready){
-      await document.fonts.ready;
-    }
+    const exportParts = [
+      document.getElementById('home'),
+      ...document.querySelectorAll('body > .section'),
+      document.querySelector('.footer')
+    ].filter((el, index, list) => el && list.indexOf(el) === index);
 
-    const images = Array.from(pdfRoot.querySelectorAll('img'));
-    await Promise.all(images.map(img => {
-      if(img.complete) return Promise.resolve();
-      return new Promise(resolve => {
-        img.addEventListener('load', resolve, { once:true });
-        img.addEventListener('error', resolve, { once:true });
+    if(!exportParts.length) throw new Error('NO_EXPORT_CONTENT');
+
+    const pdf = new window.jspdf.jsPDF({ orientation:'portrait', unit:'mm', format:'a4', compress:true });
+    const pageState = { hasPage:false };
+
+    for(let i = 0; i < exportParts.length; i++){
+      const part = exportParts[i];
+      part.scrollIntoView({ block:'start', behavior:'auto' });
+      await nextPaint();
+
+      const canvas = await window.html2canvas(part, {
+        scale:Math.min(1.5, Math.max(1, window.devicePixelRatio || 1)),
+        useCORS:true,
+        allowTaint:false,
+        backgroundColor:'#0a0e17',
+        logging:false,
+        imageTimeout:10000,
+        removeContainer:true,
+        scrollX:0,
+        scrollY:-window.scrollY,
+        windowWidth:document.documentElement.clientWidth,
+        onclone:clonedDocument => {
+          clonedDocument.body.classList.add('pdf-exporting');
+          clonedDocument.querySelectorAll('.reveal').forEach(el => {
+            el.classList.add('visible');
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          });
+        }
       });
-    }));
 
-    const fileName = currentLang === 'en'
-      ? 'Portfolio_Rd_Muhammad_Rifqi_Elfaz_EN.pdf'
-      : 'Portfolio_Rd_Muhammad_Rifqi_Elfaz_ID.pdf';
+      if(canvas.width < 2 || canvas.height < 2) throw new Error('EMPTY_CANVAS');
+      addCanvasToPdf(pdf, canvas, pageState);
+      canvas.width = 1;
+      canvas.height = 1;
 
-    const options = {
-      margin: [6, 6, 6, 6],
-      filename: fileName,
-      image: { type: 'jpeg', quality: 0.96 },
-      html2canvas: {
-        scale: 1.65,
-        useCORS: true,
-        allowTaint: false,
-        logging: false,
-        backgroundColor: '#0a0e17',
-        scrollX: 0,
-        scrollY: 0,
-        windowWidth: 794
-      },
-      jsPDF: {
-        unit: 'mm',
-        format: 'a4',
-        orientation: 'portrait',
-        compress: true
-      },
-      pagebreak: {
-        mode: ['css', 'legacy'],
-        avoid: [
-          '.project-card',
-          '.skill-category',
-          '.timeline-item',
-          '.edu-card',
-          '.service-card',
-          '.contact-info-tile',
-          '.bio-card',
-          '.stat-card'
-        ]
-      },
-      enableLinks: true
-    };
+      const progress = document.getElementById('pdfExportProgress');
+      if(progress) progress.textContent = Math.round(((i + 1) / exportParts.length) * 100) + '%';
+      await nextPaint();
+    }
 
-    await html2pdf().set(options).from(pdfRoot).save();
-  } catch(error){
-    console.error('Gagal membuat PDF portfolio:', error);
-    alert(currentLang === 'en'
-      ? 'PDF export failed. Please try again or use your browser Print > Save as PDF.'
-      : 'Export PDF gagal. Silakan coba lagi atau gunakan Print browser > Save as PDF.');
-  } finally {
-    if(pdfRoot && pdfRoot.parentNode) pdfRoot.remove();
-    exportPortfolioPdfBtn.disabled = false;
-    exportPortfolioPdfBtn.classList.remove('pdf-export-loading');
-    if(label) label.textContent = originalText;
-    if(originalIcon) originalIcon.className = originalIconClass;
+    const languageSuffix = currentLang === 'en' ? 'EN' : 'ID';
+    pdf.save('Portfolio_Rd_Muhammad_Rifqi_Elfaz_' + languageSuffix + '.pdf');
+  }catch(error){
+    console.error('PDF export failed:', error);
+    const usePrint = window.confirm(
+      currentLang === 'en'
+        ? 'Automatic PDF export is unavailable. Open Print so you can choose “Save as PDF” instead?'
+        : 'Ekspor PDF otomatis tidak tersedia. Buka menu Print agar Anda dapat memilih “Save as PDF” sebagai gantinya?'
+    );
+    if(usePrint) setTimeout(() => window.print(), 100);
+  }finally{
+    if(overlay) overlay.remove();
+    restorePortfolioAfterPdf(originalScrollY);
+    exportPdfBtn.classList.remove('is-loading');
+    exportPdfBtn.disabled = false;
   }
 }
 
-if(exportPortfolioPdfBtn){
-  exportPortfolioPdfBtn.addEventListener('click', exportPortfolioToPdf);
-}
+if(exportPdfBtn) exportPdfBtn.addEventListener('click', exportPortfolioToPdf);
 
 /* ============================================
    FOOTER YEAR
